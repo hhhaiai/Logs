@@ -1,6 +1,5 @@
 package me.hhhaiai.log;
 
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -85,6 +84,13 @@ public class CtlCheck {
     }
 
     public static boolean isXml(String temp) {
+        if (TextUtils.isEmpty(getFormatXml(temp))) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String getFormatXml(String temp) {
         StringReader t = null;
         StringWriter sw = null;
         try {
@@ -98,18 +104,20 @@ public class CtlCheck {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
                     String.valueOf(4));
             transformer.transform(xmlInput, xmlOutput);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                String result = xmlOutput.getWriter().toString().replaceFirst(">", ">"
-                        + System.lineSeparator());
-                if (TextUtils.isEmpty(result)) {
-                    return false;
-                }
+            String sp = System.getProperty("line.separator");
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                sp = System.lineSeparator();
             }
-            return true;
+            String result = xmlOutput.getWriter().toString().replaceFirst(">", ">" + sp);
+            if (TextUtils.isEmpty(result)) {
+                return null;
+            } else {
+                return result;
+            }
         } catch (Throwable e) {
         } finally {
             Closer.close(t, sw);
         }
-        return false;
+        return null;
     }
 }
