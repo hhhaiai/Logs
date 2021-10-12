@@ -13,22 +13,22 @@ class Supervision {
     /**
      * @param info
      * @return
+     * @TODO
      */
     static String wrapper(String info) {
-        if (TextUtils.isEmpty(info)){
+        if (TextUtils.isEmpty(info)) {
             return null;
         }
         return null;
     }
 
     /**
-     * 按个体切割
-     *
      * @param info
      * @return
+     * @TODO 按个体切割
      */
     static List<String> split(String info) {
-        if (TextUtils.isEmpty(info)){
+        if (TextUtils.isEmpty(info)) {
             return null;
         }
         return null;

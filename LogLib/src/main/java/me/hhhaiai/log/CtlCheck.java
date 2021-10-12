@@ -1,11 +1,24 @@
 package me.hhhaiai.log;
 
+import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.List;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import me.hhhaiai.log.utils.Closer;
 
 
 public class CtlCheck {
@@ -72,6 +85,31 @@ public class CtlCheck {
     }
 
     public static boolean isXml(String temp) {
+        StringReader t = null;
+        StringWriter sw = null;
+        try {
+            t = new StringReader(temp);
+            Source xmlInput = new StreamSource(t);
+
+            sw = new StringWriter();
+            StreamResult xmlOutput = new StreamResult(sw);
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
+                    String.valueOf(4));
+            transformer.transform(xmlInput, xmlOutput);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                String result = xmlOutput.getWriter().toString().replaceFirst(">", ">"
+                        + System.lineSeparator());
+                if (TextUtils.isEmpty(result)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Throwable e) {
+        } finally {
+            Closer.close(t, sw);
+        }
         return false;
     }
 }

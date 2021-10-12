@@ -1,8 +1,13 @@
 package me.hhhaiai.log.parsers;
 
-public class ThrowableParser implements IParser{
+import android.util.Log;
+
+public class ThrowableParser implements IParser {
     @Override
     public String parserObject(Object obj) {
-        return null;
+        if (obj == null) {
+            return null;
+        }
+        return Log.getStackTraceString((Throwable) obj);
     }
 }
