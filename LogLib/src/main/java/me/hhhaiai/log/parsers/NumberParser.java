@@ -8,4 +8,9 @@ public class NumberParser implements IParser {
         }
         return obj.toString();
     }
+
+    @Override
+    public EParserType getTypeName() {
+        return EParserType.T_NUMBER;
+    }
 }

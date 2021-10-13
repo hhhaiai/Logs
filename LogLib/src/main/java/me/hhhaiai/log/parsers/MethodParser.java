@@ -6,5 +6,8 @@ public class MethodParser implements IParser{
         return null;
     }
 
-
+    @Override
+    public EParserType getTypeName() {
+        return EParserType.T_METHOD;
+    }
 }

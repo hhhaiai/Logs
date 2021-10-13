@@ -5,4 +5,9 @@ public class ObjectParer implements IParser{
     public String parserObject(Object obj) {
         return null;
     }
+
+    @Override
+    public EParserType getTypeName() {
+        return EParserType.T_OBJECT;
+    }
 }

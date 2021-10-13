@@ -10,4 +10,9 @@ public class ThrowableParser implements IParser {
         }
         return Log.getStackTraceString((Throwable) obj);
     }
+
+    @Override
+    public EParserType getTypeName() {
+        return EParserType.T_THROWABLE;
+    }
 }

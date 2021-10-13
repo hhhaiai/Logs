@@ -8,4 +8,8 @@ public class StringPrser implements IParser {
         }
         return (String) obj;
     }
+    @Override
+    public EParserType getTypeName() {
+        return EParserType.T_STRING;
+    }
 }
