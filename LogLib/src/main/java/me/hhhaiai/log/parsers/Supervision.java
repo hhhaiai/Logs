@@ -48,8 +48,9 @@ class Supervision {
             return new FieldParser();
         } else if (o instanceof Object) {
             return new ObjectParer();
+        } else {
+            return new StringPrser();
         }
-        return null;
     }
 
 

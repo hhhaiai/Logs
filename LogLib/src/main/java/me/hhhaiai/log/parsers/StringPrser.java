@@ -10,7 +10,11 @@ public class StringPrser implements IParser {
         if (args == null) {
             return null;
         }
-        return (String) args;
+        try {
+            return (String) args;
+        } catch (Throwable e) {
+            return args.toString();
+        }
     }
 
     @Override
@@ -35,6 +39,7 @@ public class StringPrser implements IParser {
         if (pair.first) {
             return pair.second;
         }
+        // 4. other case. igone
         return args;
     }
 }

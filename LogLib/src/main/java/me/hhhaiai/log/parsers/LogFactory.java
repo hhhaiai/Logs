@@ -33,7 +33,6 @@ public class LogFactory {
             if (LContent.isDefFormatInfo) {
                 formatData = parser.format(source);
             }
-
             // 4. 再次加工数据
             String wrapContent = Supervision.wrapper(parser.getTypeName(), formatData);
             // 4.+ 如需要序列化保存文件，或者上报，可在此处另行处理
