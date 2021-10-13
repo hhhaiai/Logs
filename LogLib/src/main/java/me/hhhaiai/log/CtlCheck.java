@@ -77,6 +77,8 @@ public class CtlCheck {
 
     public static Pair<Boolean, String> tryGetJsonObject(String args) {
         try {
+            // @TODO android 自带的JSON格式化有问题，多种其他语言的类型会出现转换的问题
+            //  {"a":false,"b":1,"c":"c1","d":["xx",1,"w1",@(YES)],"e":False,"f":TRUE,"g":YES}
             JSONObject obj = new JSONObject(args);
             return new Pair<Boolean, String>(true, obj.toString(LContent.JSON_INDENT));
         } catch (Throwable e) {
