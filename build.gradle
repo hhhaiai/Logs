@@ -35,7 +35,6 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url 'https://dl.bintray.com/umsdk/release' }
 //        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-
     }
 }
 task clean(type: Delete) {
