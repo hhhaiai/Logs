@@ -2,6 +2,7 @@ package me.hhhaiai.log;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -65,32 +66,26 @@ public class CtlCheck {
     }
 
 
-    public static boolean isJsonArray(String args) {
+    public static Pair<Boolean, String> tryGetJsonArray(String args) {
         try {
-            new JSONArray(args);
-            return true;
+            JSONArray arr = new JSONArray(args);
+            return new Pair<Boolean, String>(true, arr.toString(LContent.JSON_INDENT));
         } catch (Throwable e) {
         }
-        return false;
+        return new Pair<Boolean, String>(false, "");
     }
 
-    public static boolean isJsonObject(String args) {
+    public static Pair<Boolean, String> tryGetJsonObject(String args) {
         try {
-            new JSONObject(args);
-            return true;
+            JSONObject obj = new JSONObject(args);
+            return new Pair<Boolean, String>(true, obj.toString(LContent.JSON_INDENT));
         } catch (Throwable e) {
         }
-        return false;
+        return new Pair<Boolean, String>(false, "");
     }
 
-    public static boolean isXml(String temp) {
-        if (TextUtils.isEmpty(getFormatXml(temp))) {
-            return false;
-        }
-        return true;
-    }
 
-    public static String getFormatXml(String temp) {
+    public static Pair<Boolean, String> getFormatXml(String temp) {
         StringReader t = null;
         StringWriter sw = null;
         try {
@@ -102,22 +97,20 @@ public class CtlCheck {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
-                    String.valueOf(4));
+                    String.valueOf(LContent.JSON_INDENT));
             transformer.transform(xmlInput, xmlOutput);
             String sp = System.getProperty("line.separator");
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
                 sp = System.lineSeparator();
             }
             String result = xmlOutput.getWriter().toString().replaceFirst(">", ">" + sp);
-            if (TextUtils.isEmpty(result)) {
-                return null;
-            } else {
-                return result;
+            if (!TextUtils.isEmpty(result)) {
+                return new Pair<Boolean, String>(true, result);
             }
         } catch (Throwable e) {
         } finally {
             Closer.close(t, sw);
         }
-        return null;
+        return new Pair<Boolean, String>(false, "");
     }
 }

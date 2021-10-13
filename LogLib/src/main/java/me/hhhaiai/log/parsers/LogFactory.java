@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import me.hhhaiai.log.CtlCheck;
+import me.hhhaiai.log.LContent;
 
 public class LogFactory {
 
@@ -25,10 +26,18 @@ public class LogFactory {
         // 1. 获取解析器
         IParser parser = Supervision.getParser(o);
         if (parser != null) {
-            // 2. 解析成特定格式的内容，含包裹，堆栈等周边元素
-            String wrapContent = Supervision.wrapper(parser.parserObject(o));
-            // 2.+ 如需要序列化保存文件，或者上报，可在此处另行处理
-            // 3. 检测大小和切割处理
+            // 2. 解析成可读性高的字符串
+            String source = parser.parserObject(o);
+            // 3. 格式化数据
+            String formatData = source;
+            if (LContent.isDefFormatInfo) {
+                formatData = parser.format(source);
+            }
+
+            // 4. 再次加工数据
+            String wrapContent = Supervision.wrapper(parser.getTypeName(), formatData);
+            // 4.+ 如需要序列化保存文件，或者上报，可在此处另行处理
+            // 5. 检测大小和切割处理
             return Supervision.split(wrapContent);
         }
         return null;

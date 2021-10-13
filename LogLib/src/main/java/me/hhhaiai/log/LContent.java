@@ -4,19 +4,20 @@ import android.util.Log;
 
 import java.util.Locale;
 
- class LContent {
+public class LContent {
     //打印日志
-    static boolean isDefLoged = false;
+    public static boolean isDefLoged = false;
 
-    static boolean isDefShellControl = true;
-    static boolean isDefWarpperInfo = false;
-    static boolean isDefPrintCallStackInfo = false;
-    static boolean isDefFormatInfo = false;
-    protected static String DefTAG = LContent.PRE_TAG;
+    public static boolean isDefShellControl = true;
+    public static boolean isDefWarpperInfo = false;
+    public static boolean isDefPrintCallStackInfo = false;
+    public static boolean isDefFormatInfo = false;
+    public static String DefTAG = LContent.PRE_TAG;
     // 默认tag
     static final String PRE_TAG = "sanbo";
 //    static List<Logsx> LOGS = new ArrayList<Logsx>();
 
+    static final int JSON_INDENT = 2;
     static String WRNNING_SHELL_CTL = "Wranning....不够打印级别,请在命令行设置指令后重新尝试打印,命令行指令: adb shell setprop log.tag.%s %s";
 
 

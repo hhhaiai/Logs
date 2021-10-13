@@ -6,16 +6,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import me.hhhaiai.log.CtlCheck;
-
 class Supervision {
 
     /**
+     * 包裹内容
+     *
+     * @param typeName
      * @param info
      * @return
      * @TODO
      */
-    static String wrapper(String info) {
+    static String wrapper(EParserType typeName, String info) {
         if (TextUtils.isEmpty(info)) {
             return null;
         }
@@ -36,16 +37,7 @@ class Supervision {
 
     static IParser getParser(Object o) {
         if (o instanceof String) {
-            String temp = (String) o;
-            if (CtlCheck.isJsonArray(temp)) {
-                return new JsonArrayParser();
-            } else if (CtlCheck.isJsonObject(temp)) {
-                return new JsonObjParser();
-            } else if (CtlCheck.isXml(temp)) {
-                return new XmlParser();
-            } else {
-                return new StringPrser();
-            }
+            return new StringPrser();
         } else if (o instanceof Number) {
             return new NumberParser();
         } else if (o instanceof Class) {
@@ -59,4 +51,6 @@ class Supervision {
         }
         return null;
     }
+
+
 }
