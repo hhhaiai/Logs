@@ -7,6 +7,7 @@ public class ClassParser implements IParser {
             return null;
         }
         Class<?> clz = (Class) args;
+
         return null;
     }
 

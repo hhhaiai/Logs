@@ -4,6 +4,13 @@ import android.util.Log;
 
 import java.util.Locale;
 
+/**
+ * @Copyright © 2021 sanbo Inc. All rights reserved.
+ * @Description: 内部变量
+ * @Version: 1.0
+ * @Create: 2021/10/286 14:47:02
+ * @author: sanbo
+ */
 public class LContent {
     //打印日志
     public static boolean isDefLoged = false;

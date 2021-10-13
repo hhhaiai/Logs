@@ -1,9 +1,14 @@
 package me.hhhaiai.logdemo;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Field;
 
 public class MainActivity extends Activity {
     private static final String TAG = "sanbo.MainActivity";
@@ -18,7 +23,13 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case 1:
-                        Log.i(TAG, "click one");
+                        Class c = Build.class;
+                        Field[] fs = c.getFields();
+                        JSONArray ar = new JSONArray();
+                        for (Field f : fs) {
+                            ar.put(f.toString());
+                        }
+                        log(ar.toString());
                         break;
                     default:
                         break;
@@ -26,5 +37,9 @@ public class MainActivity extends Activity {
             }
         }, 4, 3);
         setContentView(mLayout);
+    }
+
+    private void log(String s) {
+        Log.i(TAG, "" + s);
     }
 }
