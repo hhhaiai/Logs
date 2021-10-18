@@ -1,5 +1,7 @@
 package me.hhhaiai.log.parsers;
 
+import android.text.TextUtils;
+
 public class ObjectParer implements IParser {
     @Override
     public String parserObject(Object args) {
@@ -10,12 +12,18 @@ public class ObjectParer implements IParser {
     }
 
     @Override
-    public EParserType getTypeName() {
-        return EParserType.T_OBJECT;
+    public String format(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
+        return args;
     }
 
     @Override
-    public String format(String args) {
-        return args;
+    public String wrapper(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
+        return null;
     }
 }

@@ -8,20 +8,6 @@ import java.util.List;
 
 class Supervision {
 
-    /**
-     * 包裹内容
-     *
-     * @param typeName
-     * @param info
-     * @return
-     * @TODO
-     */
-    static String wrapper(EParserType typeName, String info) {
-        if (TextUtils.isEmpty(info)) {
-            return null;
-        }
-        return null;
-    }
 
     /**
      * @param info

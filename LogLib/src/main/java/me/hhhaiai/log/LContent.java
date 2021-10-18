@@ -22,6 +22,7 @@ public class LContent {
     public static String DefTAG = LContent.PRE_TAG;
     // 默认tag
     static final String PRE_TAG = "sanbo";
+    // support multilog
 //    static List<Logsx> LOGS = new ArrayList<Logsx>();
 
     static final int JSON_INDENT = 2;

@@ -1,8 +1,7 @@
 package me.hhhaiai.log.parsers;
 
+import android.text.TextUtils;
 import android.util.Log;
-
-import java.lang.reflect.Method;
 
 public class ThrowableParser implements IParser {
     @Override
@@ -14,13 +13,23 @@ public class ThrowableParser implements IParser {
         return Log.getStackTraceString(th);
     }
 
-    @Override
-    public EParserType getTypeName() {
-        return EParserType.T_THROWABLE;
-    }
 
     @Override
     public String format(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
         return args;
+    }
+
+    @Override
+    public String wrapper(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
+        return null;
     }
 }

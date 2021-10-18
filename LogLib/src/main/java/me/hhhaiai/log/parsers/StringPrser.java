@@ -1,5 +1,6 @@
 package me.hhhaiai.log.parsers;
 
+import android.text.TextUtils;
 import android.util.Pair;
 
 import me.hhhaiai.log.CtlCheck;
@@ -17,13 +18,12 @@ public class StringPrser implements IParser {
         }
     }
 
-    @Override
-    public EParserType getTypeName() {
-        return EParserType.T_STRING;
-    }
 
     @Override
     public String format(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
         // 1.try parser JSONArray
         Pair<Boolean, String> pair = CtlCheck.tryGetJsonArray(args);
         if (pair.first) {
@@ -41,5 +41,13 @@ public class StringPrser implements IParser {
         }
         // 4. other case. igone
         return args;
+    }
+
+    @Override
+    public String wrapper(String args) {
+        if (TextUtils.isEmpty(args)) {
+            return null;
+        }
+        return null;
     }
 }

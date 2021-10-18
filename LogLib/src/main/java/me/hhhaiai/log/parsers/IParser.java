@@ -16,12 +16,6 @@ interface IParser {
      */
     public abstract String parserObject(Object args);
 
-    /**
-     * 返回解析器的类型
-     *
-     * @return
-     */
-    public abstract EParserType getTypeName();
 
     /**
      * 格式化字符串
@@ -31,4 +25,11 @@ interface IParser {
      */
     public abstract String format(String args);
 
+    /**
+     * 包裹
+     *
+     * @param args
+     * @return
+     */
+    public abstract String wrapper(String args);
 }
