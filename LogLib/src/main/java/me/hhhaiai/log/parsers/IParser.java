@@ -18,12 +18,22 @@ interface IParser {
 
 
     /**
+     * 数据处理
+     *
+     * @param args      元数据
+     * @param isFormat  是否格式化
+     * @param isWrapper 是否包裹
+     * @return
+     */
+    public abstract String process(String args, boolean isFormat, boolean isWrapper);
+
+    /**
      * 格式化字符串
      *
      * @param args
      * @return
      */
-    public abstract String format(String args);
+    abstract String format(String args);
 
     /**
      * 包裹
@@ -31,5 +41,5 @@ interface IParser {
      * @param args
      * @return
      */
-    public abstract String wrapper(String args);
+    abstract String wrapper(String args);
 }

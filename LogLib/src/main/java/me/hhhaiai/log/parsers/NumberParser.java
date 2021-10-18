@@ -11,6 +11,11 @@ public class NumberParser implements IParser {
         return args.toString();
     }
 
+    @Override
+    public String process(String args, boolean isFormat, boolean isWrapper) {
+        return null;
+    }
+
 
     @Override
     public String format(String args) {

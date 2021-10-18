@@ -13,6 +13,11 @@ public class ThrowableParser implements IParser {
         return Log.getStackTraceString(th);
     }
 
+    @Override
+    public String process(String args, boolean isFormat, boolean isWrapper) {
+        return null;
+    }
+
 
     @Override
     public String format(String args) {

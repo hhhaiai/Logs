@@ -12,6 +12,11 @@ public class ObjectParer implements IParser {
     }
 
     @Override
+    public String process(String args, boolean isFormat, boolean isWrapper) {
+        return null;
+    }
+
+    @Override
     public String format(String args) {
         if (TextUtils.isEmpty(args)) {
             return null;
