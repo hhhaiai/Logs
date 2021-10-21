@@ -1,5 +1,7 @@
 package me.hhhaiai.log.parsers;
 
+import android.util.Pair;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -26,14 +28,17 @@ public class LogFactory {
         // 1. 获取解析器
         IParser parser = Supervision.getParser(o);
         if (parser != null) {
-            // 2. 解析成可读性高的字符串
-            String source = parser.parserObject(o);
-            // 未序列化的字符串可以直接上传、保存
-            // 3. 数据处理，格式化和包裹
-            String processedData = parser.process(source,LContent.isDefFormatInfo, LContent.isDefWarpperInfo);
-            // 处理后的字符串可以直接上传、保存
-            // 4. 检测大小和切割处理
-            return Supervision.split(processedData);
+            // 2. 数据处理，格式化和包裹
+            // 返回值: 处理前,处理后，方便使用加工数据(可以直接上传或者保存)
+            Pair<String, String> processedData = parser.parserObject(o, LContent.isDefFormatInfo, LContent.isDefWarpperInfo);
+
+            // 3. 获取加工后数据
+            if (processedData == null) {
+                return null;
+            }
+            String processData = processedData.second;
+            // 4. 按照能打印大小进行切割
+            return Supervision.split(processData);
         }
         return null;
     }

@@ -2,39 +2,26 @@ package me.hhhaiai.log.parsers;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 public class ThrowableParser implements IParser {
     @Override
-    public String parserObject(Object args) {
+    public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
             return null;
         }
         Throwable th = (Throwable) args;
-        return Log.getStackTraceString(th);
-    }
 
-    @Override
-    public String process(String args, boolean isFormat, boolean isWrapper) {
-        return null;
-    }
-
-
-    @Override
-    public String format(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
+        String source = Log.getStackTraceString(th);
+        String tartget = null;
+        if (isFormat) {
+            tartget = Supervision.format(source);
         }
-        return args;
+        if (isWrapper) {
+            tartget = Supervision.wrapper(source);
+        }
+        return new Pair<String, String>(source, tartget);
     }
 
-    @Override
-    public String wrapper(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        return null;
-    }
+
 }

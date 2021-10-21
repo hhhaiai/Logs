@@ -1,34 +1,15 @@
 package me.hhhaiai.log.parsers;
 
 import android.text.TextUtils;
+import android.util.Pair;
 
 public class ObjectParer implements IParser {
     @Override
-    public String parserObject(Object args) {
-        if (args == null) {
+    public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {        if (args == null) {
             return null;
         }
         return null;
     }
 
-    @Override
-    public String process(String args, boolean isFormat, boolean isWrapper) {
-        return null;
-    }
 
-    @Override
-    public String format(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        return args;
-    }
-
-    @Override
-    public String wrapper(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        return null;
-    }
 }

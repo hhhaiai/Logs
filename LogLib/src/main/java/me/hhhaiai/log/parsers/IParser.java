@@ -1,5 +1,7 @@
 package me.hhhaiai.log.parsers;
 
+import android.util.Pair;
+
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.
  * @Description: 解析器接口
@@ -8,38 +10,15 @@ package me.hhhaiai.log.parsers;
  * @author: sanbo
  */
 interface IParser {
+
     /**
      * 将对象转换成有效识别的字符串
      *
-     * @param args
-     * @return
-     */
-    public abstract String parserObject(Object args);
-
-
-    /**
-     * 数据处理
-     *
-     * @param args      元数据
+     * @param args      源对象
      * @param isFormat  是否格式化
      * @param isWrapper 是否包裹
-     * @return
+     * @return Pair<String, String> : 未处理字符串，处理后字符串
      */
-    public abstract String process(String args, boolean isFormat, boolean isWrapper);
+    public abstract Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper);
 
-    /**
-     * 格式化字符串
-     *
-     * @param args
-     * @return
-     */
-    abstract String format(String args);
-
-    /**
-     * 包裹
-     *
-     * @param args
-     * @return
-     */
-    abstract String wrapper(String args);
 }

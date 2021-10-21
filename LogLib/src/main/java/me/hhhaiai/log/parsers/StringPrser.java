@@ -7,52 +7,20 @@ import me.hhhaiai.log.CtlCheck;
 
 public class StringPrser implements IParser {
     @Override
-    public String parserObject(Object args) {
+    public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
             return null;
         }
-        try {
-            return (String) args;
-        } catch (Throwable e) {
-            return args.toString();
+        String source = args.toString();
+        String tartget = null;
+        if (isFormat) {
+            tartget = Supervision.format(source);
         }
+        if (isWrapper) {
+            tartget = Supervision.wrapper(source);
+        }
+        return new Pair<String, String>(source, tartget);
     }
 
-    @Override
-    public String process(String args, boolean isFormat, boolean isWrapper) {
-        return null;
-    }
 
-
-    @Override
-    public String format(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        // 1.try parser JSONArray
-        Pair<Boolean, String> pair = CtlCheck.tryGetJsonArray(args);
-        if (pair.first) {
-            return pair.second;
-        }
-        // 2.try parser JSONObject
-        pair = CtlCheck.tryGetJsonObject(args);
-        if (pair.first) {
-            return pair.second;
-        }
-        // 3.try parser XML
-        pair = CtlCheck.getFormatXml(args);
-        if (pair.first) {
-            return pair.second;
-        }
-        // 4. other case. igone
-        return args;
-    }
-
-    @Override
-    public String wrapper(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
-        }
-        return null;
-    }
 }

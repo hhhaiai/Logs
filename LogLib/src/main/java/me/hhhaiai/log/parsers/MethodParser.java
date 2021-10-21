@@ -1,37 +1,45 @@
 package me.hhhaiai.log.parsers;
 
-import android.text.TextUtils;
+import android.util.Pair;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 public class MethodParser implements IParser {
     @Override
-    public String parserObject(Object args) {
+    public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
             return null;
         }
-        Method method = (Method) args;
-        return null;
+        String source = parserMethod((Method) args);
+        String tartget = null;
+        if (isFormat) {
+            tartget = Supervision.format(source);
+        }
+        if (isWrapper) {
+            tartget = Supervision.wrapper(source);
+        }
+        return new Pair<String, String>(source, tartget);
     }
 
-    @Override
-    public String process(String args, boolean isFormat, boolean isWrapper) {
-        return null;
-    }
-
-    @Override
-    public String format(String args) {
-        if (TextUtils.isEmpty(args)) {
+    public static String parserMethod(Method method) {
+        if (method == null) {
             return null;
         }
-        return args;
-    }
+        method.setAccessible(true);
+        StringBuffer line = new StringBuffer();
 
-    @Override
-    public String wrapper(String args) {
-        if (TextUtils.isEmpty(args)) {
-            return null;
+        Annotation[] as = method.getDeclaredAnnotations();
+        if (as != null && as.length > 0) {
+            for (Annotation a : as) {
+                line.append(a.toString()).append("\r\n");
+            }
         }
+        line.append(method.toGenericString());
+        if (!line.toString().endsWith(";")) {
+            return line.toString() + ";";
+        }
+
         return null;
     }
 }
