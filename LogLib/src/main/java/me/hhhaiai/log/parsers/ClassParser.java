@@ -21,8 +21,7 @@ public class ClassParser implements IParser {
         try {
             String fieldInfo = parserFieldByClass(clz);
             String methodInfo = parserMethodByClass(clz);
-
-            if (isFormat){
+            if (isFormat) {
 
             }
         } catch (Throwable e) {

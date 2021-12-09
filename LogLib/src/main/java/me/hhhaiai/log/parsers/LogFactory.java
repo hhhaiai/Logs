@@ -31,7 +31,6 @@ public class LogFactory {
             // 2. 数据处理，格式化和包裹
             // 返回值: 处理前,处理后，方便使用加工数据(可以直接上传或者保存)
             Pair<String, String> processedData = parser.parserObject(o, LContent.isDefFormatInfo, LContent.isDefWarpperInfo);
-
             // 3. 获取加工后数据
             if (processedData == null) {
                 return null;
