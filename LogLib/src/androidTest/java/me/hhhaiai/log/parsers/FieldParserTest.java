@@ -8,6 +8,8 @@ import org.junit.Assert;
 
 import java.lang.reflect.Field;
 
+import me.hhhaiai.log.utils.Ref;
+
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.
  * @Description: TODO
@@ -29,7 +31,7 @@ public class FieldParserTest extends TestCase {
         Field[] fs = Intent.class.getDeclaredFields();
         Assert.assertNotNull("Intent类对象获取检测", fs);
         for (Field f : fs) {
-            String line = FieldParser.parserField(f);
+            String line = Ref.getField(null, f);
             System.out.println(line);
             Assert.assertNotNull("Intent单个对象检测:" + f.toGenericString(), line);
         }
@@ -41,7 +43,7 @@ public class FieldParserTest extends TestCase {
         Field[] fs = cz.getDeclaredFields();
         Assert.assertNotNull("Build类对象获取检测", fs);
         for (Field f : fs) {
-            String line = FieldParser.parserField(f);
+            String line = Ref.getField(null, f);
             System.out.println(line);
             Assert.assertNotNull("Build单个对象检测:" + f.toGenericString(), line);
         }

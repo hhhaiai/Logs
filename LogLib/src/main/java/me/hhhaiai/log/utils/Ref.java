@@ -14,25 +14,6 @@ import me.hhhaiai.log.parsers.Helper;
  * @author: sanbo
  */
 public class Ref {
-    public static void setFinalFieldReadable(Field field, int modify) throws NoSuchFieldException, IllegalAccessException {
-        if (java.lang.reflect.Modifier.isFinal(modify)) {
-            Field modifiersField = getField("modifiers");
-            if (modifiersField == null) {
-                modifiersField = getField("accessFlags");
-            }
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(field, modify & ~java.lang.reflect.Modifier.FINAL);
-        }
-    }
-
-    private static Field getField(String accessFlags) {
-        try {
-            return Field.class.getDeclaredField(accessFlags);
-        } catch (Throwable e) {
-//            e.printStackTrace();
-        }
-        return null;
-    }
 
     // 获取变量
     public static String getField(Object obj, Field field) {
@@ -76,4 +57,26 @@ public class Ref {
         }
         return line.toString();
     }
+
+    private static void setFinalFieldReadable(Field field, int modify) throws NoSuchFieldException, IllegalAccessException {
+        if (java.lang.reflect.Modifier.isFinal(modify)) {
+            Field modifiersField = getField("modifiers");
+            if (modifiersField == null) {
+                modifiersField = getField("accessFlags");
+            }
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(field, modify & ~java.lang.reflect.Modifier.FINAL);
+        }
+    }
+
+    private static Field getField(String accessFlags) {
+        try {
+            return Field.class.getDeclaredField(accessFlags);
+        } catch (Throwable e) {
+//            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

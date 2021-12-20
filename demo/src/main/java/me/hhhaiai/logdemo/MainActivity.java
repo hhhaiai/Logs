@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Field;
-
+import me.hhhaiai.log.Logs;
 import me.hhhaiai.log.parsers.ClassParser;
 
 public class MainActivity extends Activity {
@@ -18,8 +15,9 @@ public class MainActivity extends Activity {
     private void click(View v) throws NoSuchFieldException, IllegalAccessException {
         switch (v.getId()) {
             case 1:
-                String buildField = ClassParser.parserFieldByClass(Build.class);
-                print(buildField);
+//                String buildField = ClassParser.parserFieldByClass(Build.class);
+//                print(buildField);
+                Logs.i(Build.class);
                 break;
             case 2:
                 String buildMethod = ClassParser.parserMethodByClass(Build.class);
@@ -31,15 +29,6 @@ public class MainActivity extends Activity {
     }
 
 
-    private void format1() {
-        Class c = Build.class;
-        Field[] fs = c.getFields();
-        JSONArray ar = new JSONArray();
-        for (Field f : fs) {
-            ar.put(f.toString());
-        }
-        log(ar.toString());
-    }
 
     private void print(String info) {
         log(info);
