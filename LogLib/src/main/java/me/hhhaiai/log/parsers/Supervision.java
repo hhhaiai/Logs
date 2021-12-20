@@ -5,7 +5,6 @@ import android.util.Pair;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import me.hhhaiai.log.CtlCheck;
 
@@ -13,17 +12,10 @@ class Supervision {
 
 
     /**
-     * @param info
+     * 格式化
+     * @param args
      * @return
-     * @TODO 按个体切割
      */
-    static List<String> split(String info) {
-        if (TextUtils.isEmpty(info)) {
-            return null;
-        }
-        return null;
-    }
-
     static String format(String args) {
         if (TextUtils.isEmpty(args)) {
             return null;
@@ -47,10 +39,7 @@ class Supervision {
         return args;
     }
 
-    static String wrapper(String args) {
 
-        return null;
-    }
 
     public static Object priWrep(Object res) {
         if (res instanceof Long) {

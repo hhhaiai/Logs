@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import java.lang.reflect.Field;
 
+import me.hhhaiai.log.proces.LinesPorcesser;
 import me.hhhaiai.log.utils.Ref;
 
 public class FieldParser implements IParser {
@@ -21,10 +22,11 @@ public class FieldParser implements IParser {
                 tartget = Supervision.format(source);
             }
             if (isWrapper) {
-                tartget = Supervision.wrapper(tartget);
+                tartget = LinesPorcesser.wrapper(tartget);
+                return new Pair<String, String>(source, tartget);
+            } else {
+                return new Pair<String, String>(source, source);
             }
-            return new Pair<String, String>(source, tartget);
-
         } catch (Throwable e) {
             e.printStackTrace();
         }

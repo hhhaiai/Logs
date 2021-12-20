@@ -1,8 +1,9 @@
 package me.hhhaiai.log.parsers;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
+
+import me.hhhaiai.log.proces.LinesPorcesser;
 
 public class ThrowableParser implements IParser {
     @Override
@@ -18,9 +19,11 @@ public class ThrowableParser implements IParser {
             tartget = Supervision.format(source);
         }
         if (isWrapper) {
-            tartget = Supervision.wrapper(source);
+            tartget = LinesPorcesser.wrapper(source);
+            return new Pair<String, String>(source, tartget);
+        } else {
+            return new Pair<String, String>(source, source);
         }
-        return new Pair<String, String>(source, tartget);
     }
 
 

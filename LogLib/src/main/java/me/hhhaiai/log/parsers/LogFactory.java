@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import me.hhhaiai.log.CtlCheck;
 import me.hhhaiai.log.LContent;
+import me.hhhaiai.log.proces.LinesPorcesser;
 
 public class LogFactory {
 
@@ -37,7 +38,7 @@ public class LogFactory {
             }
             String processData = processedData.second;
             // 4. 按照能打印大小进行切割
-            return Supervision.split(processData);
+            return LinesPorcesser.split(processData);
         }
         return null;
     }

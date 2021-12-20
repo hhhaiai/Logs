@@ -6,6 +6,7 @@ import android.util.Pair;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import me.hhhaiai.log.proces.LinesPorcesser;
 import me.hhhaiai.log.utils.Ref;
 
 public class ClassParser implements IParser {
@@ -26,15 +27,18 @@ public class ClassParser implements IParser {
             String fieldInfo = parserFieldByClass(clz);
             String methodInfo = parserMethodByClass(clz);
             // 暂时格式化部分不增加其他的，后续可增加类关系等
-            if (isFormat) {
-                source.append(Supervision.format(fieldInfo))
-                        .append("\r\n")
-                        .append(Supervision.format(methodInfo));
-            }
+//            if (isFormat) {
+            source.append(Supervision.format(fieldInfo))
+                    .append("\r\n")
+                    .append(Supervision.format(methodInfo));
+//            }
             if (isWrapper) {
-                target.append(Supervision.wrapper(source.toString()));
+                target.append(LinesPorcesser.wrapper(source.toString()));
+                return new Pair<String, String>(source.toString(), target.toString());
+            } else {
+                return new Pair<String, String>(source.toString(), source.toString());
             }
-            return new Pair<String, String>(source.toString(), target.toString());
+
         } catch (Throwable e) {
             e.printStackTrace();
         }

@@ -5,6 +5,8 @@ import android.util.Pair;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import me.hhhaiai.log.proces.LinesPorcesser;
+
 public class MethodParser implements IParser {
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
@@ -17,9 +19,12 @@ public class MethodParser implements IParser {
             tartget = Supervision.format(source);
         }
         if (isWrapper) {
-            tartget = Supervision.wrapper(tartget);
+            tartget = LinesPorcesser.wrapper(tartget);
+            return new Pair<String, String>(source, tartget);
+        }else {
+            return new Pair<String, String>(source, source);
         }
-        return new Pair<String, String>(source, tartget);
+
     }
 
     public static String parserMethod(Method method) {

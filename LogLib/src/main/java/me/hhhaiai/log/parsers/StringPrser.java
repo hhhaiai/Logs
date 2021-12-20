@@ -2,6 +2,8 @@ package me.hhhaiai.log.parsers;
 
 import android.util.Pair;
 
+import me.hhhaiai.log.proces.LinesPorcesser;
+
 public class StringPrser implements IParser {
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
@@ -14,9 +16,11 @@ public class StringPrser implements IParser {
             tartget = Supervision.format(source);
         }
         if (isWrapper) {
-            tartget = Supervision.wrapper(tartget);
+            tartget = LinesPorcesser.wrapper(tartget);
+            return new Pair<String, String>(source, tartget);
+        }else {
+            return new Pair<String, String>(source, source);
         }
-        return new Pair<String, String>(source, tartget);
     }
 
 
