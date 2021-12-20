@@ -1,6 +1,10 @@
 package me.hhhaiai.log.utils;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import me.hhhaiai.log.parsers.Helper;
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.
@@ -28,5 +32,48 @@ public class Ref {
 //            e.printStackTrace();
         }
         return null;
+    }
+
+    // 获取变量
+    public static String getField(Object obj, Field field) {
+        StringBuffer line = new StringBuffer();
+        try {
+            if (field != null) {
+                field.setAccessible(true);
+            }
+            //解析类注释
+            Annotation[] as = field.getDeclaredAnnotations();
+            if (as != null && as.length > 0) {
+                for (Annotation a : as) {
+                    line.append(a.toString()).append("\r\n");
+                }
+            }
+            line.append(field.toGenericString());
+
+            int modify = field.getModifiers();
+            setFinalFieldReadable(field, modify);
+            // 解析静态变量.也可以理解成获取默认值
+            if (Modifier.isStatic(modify)) {
+                try {
+                    Object resFieldValue = field.get(null);
+                    if (resFieldValue != null) {
+                        line.append(" = ").append(Helper.wrpper(resFieldValue));
+                    }
+                } catch (Throwable e) {
+                }
+            }
+            if (obj != null) {
+                Object value = field.get(obj);
+                if (value != null) {
+                    line.append(" = ").append(Helper.wrpper(value));
+                }
+            }
+            if (!line.toString().endsWith(";")) {
+                line.append(";");
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return line.toString();
     }
 }

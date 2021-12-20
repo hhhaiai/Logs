@@ -6,6 +6,8 @@ import android.util.Pair;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import me.hhhaiai.log.utils.Ref;
+
 public class ClassParser implements IParser {
 
 
@@ -16,18 +18,27 @@ public class ClassParser implements IParser {
             return null;
         }
         Class<?> clz = (Class) args;
-
+        StringBuilder source = new StringBuilder();
+        StringBuilder target = new StringBuilder();
         // 获取自己类的所有变量
         try {
+
             String fieldInfo = parserFieldByClass(clz);
             String methodInfo = parserMethodByClass(clz);
+            // 暂时格式化部分不增加其他的，后续可增加类关系等
             if (isFormat) {
-
+                source.append(Supervision.format(fieldInfo))
+                        .append("\r\n")
+                        .append(Supervision.format(methodInfo));
             }
+            if (isWrapper) {
+                target.append(Supervision.wrapper(source.toString()));
+            }
+            return new Pair<String, String>(source.toString(), target.toString());
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        return null;
+        return new Pair<String, String>(null, null);
     }
 
     public static String parserMethodByClass(Class<?> clz) {
@@ -58,7 +69,7 @@ public class ClassParser implements IParser {
         }
         StringBuilder res = new StringBuilder();
         for (Field f : fields) {
-            String line = FieldParser.parserField(f);
+            String line = Ref.getField(null, f);
             if (!TextUtils.isEmpty(line)) {
                 res.append(line).append("\r\n");
             }

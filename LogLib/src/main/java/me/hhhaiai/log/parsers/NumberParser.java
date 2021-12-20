@@ -14,7 +14,7 @@ public class NumberParser implements IParser {
             tartget = Supervision.format(source);
         }
         if (isWrapper) {
-            tartget = Supervision.wrapper(source);
+            tartget = Supervision.wrapper(tartget);
         }
         return new Pair<String, String>(source, tartget);
     }

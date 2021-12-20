@@ -52,7 +52,7 @@ class Supervision {
         return null;
     }
 
-    public static Object wrpper(Object res) {
+    public static Object priWrep(Object res) {
         if (res instanceof Long) {
             return (Long) res + "L";
         } else if (res instanceof Float) {
