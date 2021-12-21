@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,25 @@ public class MainActivity extends Activity {
                 m.put("郑", 3);
                 m.put("王", 4);
                 Logs.i(m);
+                break;
+            case 4:
+                List<String> list = new ArrayList<>();
+                list.add("1");
+                list.add("2");
+                list.add("3");
+                list.add("4");
+                list.add("1");
+
+                Logs.i(list);
+                break;
+            case 5:
+                // 存在和可变参数冲突的问题
+                String[] ss = new String[]{"1", "2", "3", "5", "2", "1"};
+                Logs.i(ss);
+                break;
+            case 6:
+                int[] is = new int[]{1, 2, 4, 2, 1};
+                Logs.i(is);
                 break;
             default:
                 break;

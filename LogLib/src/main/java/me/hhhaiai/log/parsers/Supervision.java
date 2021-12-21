@@ -5,6 +5,7 @@ import android.util.Pair;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 import me.hhhaiai.log.CtlCheck;
 
@@ -86,6 +87,12 @@ class Supervision {
             return new MethodParser();
         } else if (o instanceof Field) {
             return new FieldParser();
+        } else if (o instanceof Map) {
+            return new MapPrser();
+        } else if (o instanceof java.lang.Iterable) {
+            return new IterablePrser();
+        } else if (o.getClass().isArray()) {
+            return new ArrayPrser();
         } else if (o instanceof Object) {
             return new ObjectParer();
         } else {
