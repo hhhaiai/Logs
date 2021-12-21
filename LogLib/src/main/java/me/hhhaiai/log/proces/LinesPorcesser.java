@@ -21,11 +21,89 @@ public class LinesPorcesser {
      */
     public static String wrapper(String info) {
 
-        return null;
+        StringBuilder sb = new StringBuilder();
+        if (TextUtils.isEmpty(info)) {
+            sb.append(CONTENT_LINE);
+            return String.valueOf(sb);
+        }
+
+        preprocess(info, sb, "\r");
+        preprocess(info, sb, "\n");
+        preprocess(info, sb, "\r\n");
+        preprocess(info, sb, "\n\r");
+        preprocess(info, sb, "");
+        return String.valueOf(sb);
+    }
+
+    private static void preprocess(String info, StringBuilder sb, String sps) {
+        if (TextUtils.isEmpty(sps)) {
+            if (!TextUtils.isEmpty(info)
+                    && !info.startsWith(CONTENT_A)
+                    && !info.startsWith(CONTENT_B)
+                    && !info.startsWith(CONTENT_C)
+                    && !info.startsWith(CONTENT_D)
+                    && !info.startsWith(CONTENT_E)) {
+                sb.append(CONTENT_LINE);
+            }
+            sb.append(info);
+            return;
+        }
+
+        if (info.contains(sps)) {
+            String[] ss = info.split(sps);
+            String temp = null;
+            if (ss.length > 0) {
+                sb = new StringBuilder();
+                for (int i = 0; i < ss.length; i++) {
+                    temp = ss[i];
+                    if (
+                            !TextUtils.isEmpty(info)
+                                    && !info.startsWith(CONTENT_A)
+                                    && !info.startsWith(CONTENT_B)
+                                    && !info.startsWith(CONTENT_C)
+                                    && !info.startsWith(CONTENT_D)
+                                    && !info.startsWith(CONTENT_E)
+                    ) {
+                        sb.append(CONTENT_LINE);
+                    }
+                    sb.append(temp);
+
+                    if (i != ss.length - 1) {
+                        sb.append("\n");
+                    }
+                }
+            }
+
+        }
     }
 
     // 规定每段显示的长度.每行最大日志长度 (Android Studio3.1最多2902字符，忘记来源，好像是测试来的)
     private static int LOG_MAXLENGTH = 2900;
+    // 格式化时，行首封闭符
+    private static String CONTENT_LINE = "║ ";
+
+//    private static String content_title_begin =
+//            "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
+//    private static String content_title_info_callstack =
+//            "╔══════════════════════════════════════════════════════════════调用详情══════════════════════════════════════════════════════════════";
+//    private static String content_title_info_log =
+//            "╔══════════════════════════════════════════════════════════════日志详情══════════════════════════════════════════════════════════════";
+//    private static String content_title_info_error =
+//            "╔══════════════════════════════════════════════════════════════异常详情══════════════════════════════════════════════════════════════";
+//    private static String content_title_info_type =
+//            "╔════════════════════════════════════════════════════「%s"
+//                    + "」════════════════════════════════════════════════════";
+//    private static String content_title_end =
+//            "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
+    /**
+     * 行首为该符号时，不增加行首封闭符
+     */
+    private static String CONTENT_A = CONTENT_LINE;
+    private static String CONTENT_B = "╔";
+    private static String CONTENT_C = "╚";
+    private static String CONTENT_D = " ╔";
+    private static String CONTENT_E = " ╚";
+    private static Character FORMATER = '%';
 
     /**
      * @param info
