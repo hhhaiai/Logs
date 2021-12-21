@@ -2,8 +2,8 @@ package me.hhhaiai.log.parsers;
 
 import android.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import me.hhhaiai.log.CtlCheck;
 import me.hhhaiai.log.LContent;
@@ -12,14 +12,14 @@ import me.hhhaiai.log.proces.LinesPorcesser;
 public class LogFactory {
 
     public static List<String> getInfo(Object... args) {
-        CopyOnWriteArrayList result = new CopyOnWriteArrayList();
+        List result = new ArrayList();
         for (Object o : args) {
             // 按照类型分割
             List<String> sp1 = getFianlContent(o);
             if (!CtlCheck.isValid(sp1)) {
                 continue;
             } else {
-                result.add(sp1);
+                result.addAll(sp1);
             }
         }
         return result;

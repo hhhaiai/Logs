@@ -1,8 +1,10 @@
 package me.hhhaiai.log.proces;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class LinesPorcesser {
     public static String wrapper(String info) {
 
         StringBuilder sb = new StringBuilder();
+        sb.append(content_title_info_log).append("\r\n");
         if (TextUtils.isEmpty(info)) {
             sb.append(CONTENT_LINE);
             return String.valueOf(sb);
@@ -32,6 +35,7 @@ public class LinesPorcesser {
         preprocess(info, sb, "\r\n");
         preprocess(info, sb, "\n\r");
         preprocess(info, sb, "");
+        sb.append(content_title_end);
         return String.valueOf(sb);
     }
 
@@ -82,19 +86,19 @@ public class LinesPorcesser {
     // 格式化时，行首封闭符
     private static String CONTENT_LINE = "║ ";
 
-//    private static String content_title_begin =
+    //    private static String content_title_begin =
 //            "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
 //    private static String content_title_info_callstack =
 //            "╔══════════════════════════════════════════════════════════════调用详情══════════════════════════════════════════════════════════════";
-//    private static String content_title_info_log =
-//            "╔══════════════════════════════════════════════════════════════日志详情══════════════════════════════════════════════════════════════";
-//    private static String content_title_info_error =
+    private static String content_title_info_log =
+            "╔══════════════════════════════════════════════════════════════日志详情══════════════════════════════════════════════════════════════";
+    //    private static String content_title_info_error =
 //            "╔══════════════════════════════════════════════════════════════异常详情══════════════════════════════════════════════════════════════";
 //    private static String content_title_info_type =
 //            "╔════════════════════════════════════════════════════「%s"
 //                    + "」════════════════════════════════════════════════════";
-//    private static String content_title_end =
-//            "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
+    private static String content_title_end =
+            "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
     /**
      * 行首为该符号时，不增加行首封闭符
      */
@@ -103,7 +107,7 @@ public class LinesPorcesser {
     private static String CONTENT_C = "╚";
     private static String CONTENT_D = " ╔";
     private static String CONTENT_E = " ╚";
-    private static Character FORMATER = '%';
+//    private static Character FORMATER = '%';
 
     /**
      * @param info
@@ -124,20 +128,19 @@ public class LinesPorcesser {
                 if (sb == null) {
                     sb = new StringBuilder();
                 }
-
+                // 预加计算，超标，
                 if (sb.length() + line.length() >= LOG_MAXLENGTH) {
                     result.add(sb.toString());
                     sb = new StringBuilder();
-                    if (i != splitStr.size() - 1) {
-                        sb.append("\n");
-                    }
+//                    if (i != splitStr.size() - 1) {
+//                        sb.append("\n");
+//                    }
                 } else {
-                    sb.append(line);
+                    sb.append(line).append("\r\n");
                 }
             }
             if (sb != null) {
                 result.add(sb.toString());
-
             }
         } else {
             result.add(info);
@@ -154,27 +157,44 @@ public class LinesPorcesser {
      */
     private static List<String> getStringBysplitLine(String msg, int maxLen) {
         List<String> result = new ArrayList<String>();
-        String[] lines = msg.split("\n");
-        if (lines.length == 1) {
-            lines = msg.split("\r");
-            if (lines.length == 1) {
-                lines = msg.split("\r\n");
-                if (lines.length == 1) {
-                    lines = msg.split("\n\r");
-                }
-            }
+        if (TextUtils.isEmpty(msg)) {
+            return result;
         }
-        if (lines.length > 1) {
-            for (int i = 0; i < lines.length; i++) {
-                String line = lines[i];
-                // 单行都超过最大长度，直接按照字符串分别来做
-                processLine(maxLen, result, line);
-            }
-        } else {
-            processLine(maxLen, result, msg);
+        // split to lines
+        List<String> lines = parserToLines(msg);
+        // makesure less than max size in line.
+        if (lines.size()<1){
+            lines.add(msg);
+        }
+        for (String line: lines) {
+            // 单行都超过最大长度，直接按照字符串分别来做
+            processLine(maxLen, result, line.trim());
         }
 
         return result;
+    }
+
+    private static List<String> parserToLines(String msg) {
+        List<String> lines = new ArrayList<String>();
+        parserToLines(lines, msg, "\r");
+        parserToLines(lines, msg, "\n");
+        parserToLines(lines, msg, "\r\n");
+        parserToLines(lines, msg, "\n\r");
+        if (lines.size() == 0) {
+            //has any thing
+            lines.add(msg);
+        }
+        return lines;
+    }
+
+    private static void parserToLines(List<String> lines, String msg, String splitKey) {
+        if (msg.contains(splitKey)) {
+            String[] tempss = msg.split(splitKey);
+            if (tempss != null) {
+                // makesure can update
+                lines.addAll(Arrays.asList(tempss));
+            }
+        }
     }
 
     /**

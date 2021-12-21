@@ -1,13 +1,17 @@
 package me.hhhaiai.logdemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import me.hhhaiai.log.Logs;
-import me.hhhaiai.log.parsers.ClassParser;
 
 public class MainActivity extends Activity {
 
@@ -20,8 +24,20 @@ public class MainActivity extends Activity {
                 Logs.i(Build.class);
                 break;
             case 2:
-                String buildMethod = ClassParser.parserMethodByClass(Build.class);
-                print(buildMethod);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_ALL_APPS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setClass(this, MainActivity.class);
+                Logs.i(intent);
+                break;
+            case 3:
+                Map<String, Integer> m = new HashMap<>();
+
+                m.put("周", 1);
+                m.put("吴", 2);
+                m.put("郑", 3);
+                m.put("王", 4);
+                Logs.i(m);
                 break;
             default:
                 break;

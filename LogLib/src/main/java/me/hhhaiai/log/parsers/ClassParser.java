@@ -26,11 +26,12 @@ public class ClassParser implements IParser {
 
             String fieldInfo = parserFieldByClass(clz);
             String methodInfo = parserMethodByClass(clz);
-            // 暂时格式化部分不增加其他的，后续可增加类关系等
-//            if (isFormat) {
             source.append(Supervision.format(fieldInfo))
                     .append("\r\n")
                     .append(Supervision.format(methodInfo));
+            // 暂时格式化部分不增加其他的，后续可增加类关系等
+//            if (isFormat) {
+
 //            }
             if (isWrapper) {
                 target.append(LinesPorcesser.wrapper(source.toString()));
