@@ -58,6 +58,9 @@ public class MainActivity extends Activity {
             case 6:
                 int[] is = new int[]{1, 2, 4, 2, 1};
                 Logs.i(is);
+
+                long[] lsw = new long[]{6L, 6L, 6L, 2L, 1L};
+                Logs.i(lsw);
                 break;
             default:
                 break;
