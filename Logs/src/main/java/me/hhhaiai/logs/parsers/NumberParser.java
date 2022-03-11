@@ -1,10 +1,10 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
 import android.util.Pair;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
+import me.hhhaiai.logs.proces.LinesPorcesser;
 
-public class StringPrser implements IParser {
+public class NumberParser implements IParser {
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
@@ -21,7 +21,7 @@ public class StringPrser implements IParser {
         } else {
             return new Pair<String, String>(source, source);
         }
-    }
 
+    }
 
 }

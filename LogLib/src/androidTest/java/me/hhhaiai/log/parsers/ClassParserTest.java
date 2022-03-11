@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  */
 public class ClassParserTest extends TestCase {
 
-    ClassParser cla =new ClassParser();
+    ClassParser cla = new ClassParser();
 
     public void testParserObject() {
     }

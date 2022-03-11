@@ -1,8 +1,8 @@
-package me.hhhaiai.log;
+package me.hhhaiai.logs;
 
-import android.text.TextUtils;
-import android.util.Log;
+
 import android.util.Pair;
+import android.util.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,20 +18,21 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import me.hhhaiai.log.utils.Closer;
+import me.hhhaiai.logs.utils.Closer;
 
 
 public class CtlCheck {
     /**
      * shell不允许打印该级别日志打印
      *
-     * @param level
+     * @param priorty
      * @return
      */
-    static boolean isShellLimit(int level) {
-        if (LContent.isDefShellControl && !Log.isLoggable(LContent.USER_TAG, level)) {
-            LContent.getLogLevelName(level);
-            Log.println(level, LContent.USER_TAG, LContent.getShellErrorInfo(level));
+    static boolean isShellLimit(int priorty) {
+        if (LContent.isDefShellControl) {
+            LContent.getLogLevelName(priorty);
+
+            Logger.println(priorty, LContent.DefTAG, LContent.getShellErrorInfo(priorty));
             return true;
         }
         return false;
@@ -102,9 +103,9 @@ public class CtlCheck {
                     String.valueOf(LContent.JSON_INDENT));
             transformer.transform(xmlInput, xmlOutput);
             String sp = System.getProperty("line.separator");
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-                sp = System.lineSeparator();
-            }
+//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+//                sp = System.lineSeparator();
+//            }
             String result = xmlOutput.getWriter().toString().replaceFirst(">", ">" + sp);
             if (!TextUtils.isEmpty(result)) {
                 return new Pair<Boolean, String>(true, result);

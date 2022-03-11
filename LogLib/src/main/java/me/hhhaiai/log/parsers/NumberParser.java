@@ -18,7 +18,7 @@ public class NumberParser implements IParser {
         if (isWrapper) {
             tartget = LinesPorcesser.wrapper(tartget);
             return new Pair<String, String>(source, tartget);
-        }else {
+        } else {
             return new Pair<String, String>(source, source);
         }
 

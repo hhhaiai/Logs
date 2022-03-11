@@ -1,11 +1,11 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
 import android.util.Pair;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
+import me.hhhaiai.logs.proces.LinesPorcesser;
 
 public class MethodParser implements IParser {
     @Override

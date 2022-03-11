@@ -21,20 +21,20 @@ public class SupervisionTest extends TestCase {
 
     public void testGetParser() {
         Map m = new HashMap();
-        m.put("a",1);
-        m.put("b",2);
-                Log.i("sanbo",Supervision.getParser(m).toString());
+        m.put("a", 1);
+        m.put("b", 2);
+        Log.i("sanbo", Supervision.getParser(m).toString());
 
-        List<String> ls =new ArrayList<>();
+        List<String> ls = new ArrayList<>();
         ls.add("1");
         ls.add("2");
-        Log.i("sanbo",Supervision.getParser(ls).toString());
+        Log.i("sanbo", Supervision.getParser(ls).toString());
 
 
-        String[] ss =new String[]{"1","2"};
-        Log.i("sanbo",Supervision.getParser(ss).toString());
+        String[] ss = new String[]{"1", "2"};
+        Log.i("sanbo", Supervision.getParser(ss).toString());
 
         int[] is = new int[]{1, 2, 4, 2, 1};
-        Log.i("sanbo",Supervision.getParser(is).toString());
+        Log.i("sanbo", Supervision.getParser(is).toString());
     }
 }

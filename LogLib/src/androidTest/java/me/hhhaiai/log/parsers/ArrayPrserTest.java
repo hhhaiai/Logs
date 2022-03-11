@@ -14,8 +14,8 @@ import java.util.Arrays;
 public class ArrayPrserTest extends TestCase {
 
     public void testParserObject() {
-        String[] ss =new String[]{"1","2"};
-        int[] si1=new int[]{1,2};
+        String[] ss = new String[]{"1", "2"};
+        int[] si1 = new int[]{1, 2};
         Arrays.asList(ss);
         Arrays.asList(si1);
     }

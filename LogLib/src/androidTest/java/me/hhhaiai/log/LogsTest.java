@@ -67,12 +67,12 @@ public class LogsTest extends BaseLogTest {
             Log.i("sanbo", "is:" + is.toString());
 
             if (is.toString().startsWith("[I")) {
-                int[] ar= (int[]) is;
+                int[] ar = (int[]) is;
                 Log.i("sanbo", "ar size:" + ar.length);
                 Log.i("sanbo", "ar :" + Arrays.asList(ar));
                 ArrayList arrayList = new ArrayList();
                 Collections.addAll(arrayList, ar);
-                Log.i("sanbo", "arrayList:" +arrayList);
+                Log.i("sanbo", "arrayList:" + arrayList);
             }
 
         }

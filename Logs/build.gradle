@@ -1,0 +1,69 @@
+//plugins {
+//    id 'java-library'
+//}
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}
+apply plugin: 'java-library'
+//apply plugin: 'java'
+//apply plugin: 'eclipse'
+//apply plugin: 'application'
+//mainClassName = 'hello.HelloWorld'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//compileKotlin {
+//    kotlinOptions.jvmTarget = "1.8"
+//}
+//compileTestKotlin {
+//    kotlinOptions.jvmTarget = "1.8"
+//}
+jar {
+    configurations.runtime.each { println("=======>" + it.path) }
+    println "========="
+    configurations.compile.each { println("------->" + it.path) }
+    println "========="
+
+//    from {
+//        //添加依懒到打包文件
+//        //configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//        configurations.runtime.collect { zipTree(it) }
+//    }
+    manifest {
+        attributes 'Main-Class': ''
+    }
+}
+
+group 'me.hhhaiai'
+version '1.0.0'
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+    jcenter()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+//    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+//    implementation("org.jsoup:jsoup:1.14.3")
+    testImplementation "junit:junit:4.12"
+}
+
+//task clearJar(type: Delete) {
+//    delete 'build/libs/lib'
+//}
+//
+//task copyJar(type: Copy) {
+//    from configurations.runtime
+//    into('build/libs/lib')
+//}
+//
+//task release(type: Copy, dependsOn: [build, clearJar, copyJar])

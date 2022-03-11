@@ -1,4 +1,4 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
 import android.util.Pair;
 
@@ -6,7 +6,8 @@ import org.json.JSONArray;
 
 import java.util.Iterator;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
+import me.hhhaiai.logs.proces.LinesPorcesser;
+
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.

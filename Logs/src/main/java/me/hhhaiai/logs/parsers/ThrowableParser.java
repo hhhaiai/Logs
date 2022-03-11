@@ -1,22 +1,25 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
+import android.util.Log;
 import android.util.Pair;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
+import me.hhhaiai.logs.proces.LinesPorcesser;
 
-public class StringPrser implements IParser {
+public class ThrowableParser implements IParser {
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
             return null;
         }
-        String source = args.toString();
+        Throwable th = (Throwable) args;
+
+        String source = Log.getStackTraceString(th);
         String tartget = null;
         if (isFormat) {
             tartget = Supervision.format(source);
         }
         if (isWrapper) {
-            tartget = LinesPorcesser.wrapper(tartget);
+            tartget = LinesPorcesser.wrapper(source);
             return new Pair<String, String>(source, tartget);
         } else {
             return new Pair<String, String>(source, source);

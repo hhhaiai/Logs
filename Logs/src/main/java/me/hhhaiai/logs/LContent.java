@@ -1,4 +1,4 @@
-package me.hhhaiai.log;
+package me.hhhaiai.logs;
 
 import android.util.Log;
 
@@ -19,7 +19,7 @@ public class LContent {
     public static boolean isDefWarpperInfo = false;
     public static boolean isDefPrintCallStackInfo = false;
     public static boolean isDefFormatInfo = false;
-    public static String USER_TAG = LContent.PRE_TAG;
+    public static String DefTAG = LContent.PRE_TAG;
     // 默认tag
     static final String PRE_TAG = "sanbo";
     // support multilog
@@ -48,6 +48,6 @@ public class LContent {
     }
 
     public static String getShellErrorInfo(int level) {
-        return String.format(Locale.getDefault(), LContent.WRNNING_SHELL_CTL, USER_TAG, LContent.getLogLevelName(level));
+        return String.format(Locale.getDefault(), LContent.WRNNING_SHELL_CTL, DefTAG, LContent.getLogLevelName(level));
     }
 }

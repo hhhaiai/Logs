@@ -1,10 +1,8 @@
-package me.hhhaiai.log;
-
-import android.util.Log;
+package me.hhhaiai.logs;
 
 import java.util.List;
 
-import me.hhhaiai.log.parsers.LogFactory;
+import me.hhhaiai.logs.parsers.LogFactory;
 
 class LogPrint {
     public static void print(int level, Object... args) {
@@ -27,16 +25,8 @@ class LogPrint {
 
 
         for (String line : list) {
-            Log.println(level, LContent.USER_TAG, line);
+            Logger.println(level, LContent.DefTAG, line);
         }
     }
 
-    private static boolean isAndroidByLog() {
-        try {
-            Class.forName("android.util.Log");
-            return true;
-        } catch (Throwable e) {
-        }
-        return false;
-    }
 }

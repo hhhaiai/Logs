@@ -1,8 +1,9 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
 import android.util.Pair;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
+import me.hhhaiai.logs.proces.LinesPorcesser;
+
 
 public class StringPrser implements IParser {
     @Override

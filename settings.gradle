@@ -1,2 +1,3 @@
 rootProject.name = "Logs"
 include ':LogLib', ':demo'
+include ':Logs'

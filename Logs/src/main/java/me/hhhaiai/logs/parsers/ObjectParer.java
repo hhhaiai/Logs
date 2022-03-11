@@ -1,12 +1,12 @@
-package me.hhhaiai.log.parsers;
+package me.hhhaiai.logs.parsers;
 
-import android.text.TextUtils;
 import android.util.Pair;
+import android.util.TextUtils;
 
 import java.lang.reflect.Field;
 
-import me.hhhaiai.log.proces.LinesPorcesser;
-import me.hhhaiai.log.utils.Ref;
+import me.hhhaiai.logs.proces.LinesPorcesser;
+import me.hhhaiai.logs.utils.Ref;
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.

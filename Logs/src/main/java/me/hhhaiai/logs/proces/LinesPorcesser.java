@@ -1,10 +1,12 @@
-package me.hhhaiai.log.proces;
+package me.hhhaiai.logs.proces;
 
-import android.text.TextUtils;
+
+import android.util.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.
