@@ -1,2 +1,2 @@
 # Logs
-android log utils
+Java and Android Log
