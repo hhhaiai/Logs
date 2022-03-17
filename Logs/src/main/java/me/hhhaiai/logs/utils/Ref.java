@@ -1,11 +1,11 @@
 package me.hhhaiai.logs.utils;
 
+import me.hhhaiai.logs.parsers.Helper;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-
-import me.hhhaiai.logs.parsers.Helper;
 
 
 /**
@@ -60,6 +60,7 @@ public class Ref {
         return line.toString();
     }
 
+    // support android and java
     private static void setFinalFieldReadable(Field field, int modify) throws NoSuchFieldException, IllegalAccessException {
         if (Modifier.isFinal(modify)) {
             Field modifiersField = getField("modifiers");
@@ -75,7 +76,6 @@ public class Ref {
         try {
             return Field.class.getDeclaredField(accessFlags);
         } catch (Throwable e) {
-//            e.printStackTrace();
         }
         return null;
     }

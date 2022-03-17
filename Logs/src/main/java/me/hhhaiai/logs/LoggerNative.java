@@ -1,14 +1,13 @@
 package me.hhhaiai.logs;
 
 import me.hhhaiai.logs.utils.LogLevel;
+import me.hhhaiai.logs.utils.Ref;
 import me.hhhaiai.logs.utils.Utils;
 
 import java.io.File;
 import java.lang.reflect.Method;
 
-import me.hhhaiai.logs.utils.Ref;
-
-public class LoggerNative {
+class LoggerNative {
     public static void println(int priority, String tag, String msg) {
         if (Utils.isEmpty(msg)) {
             return;

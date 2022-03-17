@@ -12,19 +12,18 @@ public class Closer {
             if (o == null) {
                 continue;
             }
-
             if (o instanceof Closeable) {
                 Closeable co = (Closeable) o;
                 try {
                     co.close();
                 } catch (Exception e) {
                 }
-
             } else if (o instanceof AutoCloseable) {
                 try {
                     ((AutoCloseable) o).close();
                 } catch (Exception e) {
                 }
+            }else{
             }
         }
     }

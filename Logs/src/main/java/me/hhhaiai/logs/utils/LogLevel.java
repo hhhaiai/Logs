@@ -1,10 +1,6 @@
 package me.hhhaiai.logs.utils;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 public class LogLevel {
-
 
     /**
      * Priority constant for the println method; use Log.v.
@@ -35,7 +31,4 @@ public class LogLevel {
      * Priority constant for the println method.
      */
     public static final int ASSERT = 7;
-
-
-
 }

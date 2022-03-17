@@ -1,11 +1,10 @@
 package me.hhhaiai.logs.parsers;
 
+import me.hhhaiai.logs.proces.LinesPorcesser;
 import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Ref;
 
 import java.lang.reflect.Field;
-
-import me.hhhaiai.logs.proces.LinesPorcesser;
-import me.hhhaiai.logs.utils.Ref;
 
 
 public class FieldParser implements IParser {
