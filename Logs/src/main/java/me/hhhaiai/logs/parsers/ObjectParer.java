@@ -1,7 +1,7 @@
 package me.hhhaiai.logs.parsers;
 
-import android.util.Pair;
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
 
@@ -52,7 +52,7 @@ public class ObjectParer implements IParser {
         StringBuilder res = new StringBuilder();
         for (Field f : fields) {
             String line = Ref.getField(obj, f);
-            if (!TextUtils.isEmpty(line)) {
+            if (!Utils.isEmpty(line)) {
                 res.append(line).append("\r\n");
             }
         }

@@ -1,8 +1,8 @@
 package me.hhhaiai.logs;
 
 
-import android.util.Pair;
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -107,7 +107,7 @@ public class CtlCheck {
 //                sp = System.lineSeparator();
 //            }
             String result = xmlOutput.getWriter().toString().replaceFirst(">", ">" + sp);
-            if (!TextUtils.isEmpty(result)) {
+            if (!Utils.isEmpty(result)) {
                 return new Pair<Boolean, String>(true, result);
             }
         } catch (Throwable e) {

@@ -2,7 +2,7 @@ package me.hhhaiai.logs.parsers;
 
 
 
-import android.util.Pair;
+import me.hhhaiai.logs.utils.Pair;
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.

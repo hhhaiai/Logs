@@ -1,12 +1,10 @@
 package me.hhhaiai.logs.parsers;
 
 
-import android.util.Pair;
-
+import me.hhhaiai.logs.proces.LinesPorcesser;
+import me.hhhaiai.logs.utils.Pair;
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import me.hhhaiai.logs.proces.LinesPorcesser;
 
 public class ArrayPrser implements IParser {
     @Override

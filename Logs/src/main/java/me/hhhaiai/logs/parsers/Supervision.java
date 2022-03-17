@@ -1,7 +1,7 @@
 package me.hhhaiai.logs.parsers;
 
-import android.util.Pair;
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,7 +19,7 @@ class Supervision {
      * @return
      */
     static String format(String args) {
-        if (TextUtils.isEmpty(args)) {
+        if (Utils.isEmpty(args)) {
             return null;
         }
         // 1.try parser JSONArray

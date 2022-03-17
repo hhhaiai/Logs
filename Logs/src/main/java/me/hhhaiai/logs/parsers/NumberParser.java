@@ -1,6 +1,6 @@
 package me.hhhaiai.logs.parsers;
 
-import android.util.Pair;
+import me.hhhaiai.logs.utils.Pair;
 
 import me.hhhaiai.logs.proces.LinesPorcesser;
 

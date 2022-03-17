@@ -1,7 +1,7 @@
 package me.hhhaiai.logs.proces;
 
 
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +19,7 @@ public class LinesPorcesser {
 
     /**
      * 包裹字符串
+     *
      * @param info
      * @return
      */
@@ -26,7 +27,7 @@ public class LinesPorcesser {
 
         StringBuilder sb = new StringBuilder();
         sb.append(content_title_info_log).append("\r\n");
-        if (TextUtils.isEmpty(info)) {
+        if (Utils.isEmpty(info)) {
             sb.append(CONTENT_LINE);
             return String.valueOf(sb);
         }
@@ -40,9 +41,9 @@ public class LinesPorcesser {
         return String.valueOf(sb);
     }
 
-    private static void preprocess(String info, StringBuilder sb, String sps) {
-        if (TextUtils.isEmpty(sps)) {
-            if (!TextUtils.isEmpty(info)
+    private static void preprocess(String info, StringBuilder sb, String splitText) {
+        if (Utils.isEmpty(splitText)) {
+            if (!Utils.isEmpty(info)
                     && !info.startsWith(CONTENT_A)
                     && !info.startsWith(CONTENT_B)
                     && !info.startsWith(CONTENT_C)
@@ -54,15 +55,15 @@ public class LinesPorcesser {
             return;
         }
 
-        if (info.contains(sps)) {
-            String[] ss = info.split(sps);
+        if (info.contains(splitText)) {
+            String[] ss = info.split(splitText);
             String temp = null;
             if (ss.length > 0) {
                 sb = new StringBuilder();
                 for (int i = 0; i < ss.length; i++) {
                     temp = ss[i];
                     if (
-                            !TextUtils.isEmpty(info)
+                            !Utils.isEmpty(info)
                                     && !info.startsWith(CONTENT_A)
                                     && !info.startsWith(CONTENT_B)
                                     && !info.startsWith(CONTENT_C)
@@ -116,7 +117,7 @@ public class LinesPorcesser {
      * @TODO 按个体切割
      */
     public static List<String> split(String info) {
-        if (TextUtils.isEmpty(info)) {
+        if (Utils.isEmpty(info)) {
             return null;
         }
         List<String> result = new ArrayList<String>();
@@ -158,7 +159,7 @@ public class LinesPorcesser {
      */
     private static List<String> getStringBysplitLine(String msg, int maxLen) {
         List<String> result = new ArrayList<String>();
-        if (TextUtils.isEmpty(msg)) {
+        if (Utils.isEmpty(msg)) {
             return result;
         }
         // split to lines

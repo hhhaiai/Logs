@@ -1,7 +1,7 @@
 package me.hhhaiai.logs;
 
-import android.util.Log;
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.LogLevel;
+import me.hhhaiai.logs.utils.Utils;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -10,7 +10,7 @@ import me.hhhaiai.logs.utils.Ref;
 
 public class LoggerNative {
     public static void println(int priority, String tag, String msg) {
-        if (TextUtils.isEmpty(msg)) {
+        if (Utils.isEmpty(msg)) {
             return;
         }
         // 2. check platform
@@ -81,17 +81,17 @@ public class LoggerNative {
 
     private static String converyPriorityToString(int priorty) {
         switch (priorty) {
-            case Log.VERBOSE:
+            case LogLevel.VERBOSE:
                 return "V";
-            case Log.DEBUG:
+            case LogLevel.DEBUG:
                 return "D";
-            case Log.INFO:
+            case LogLevel.INFO:
                 return "I";
-            case Log.WARN:
+            case LogLevel.WARN:
                 return "W";
-            case Log.ERROR:
+            case LogLevel.ERROR:
                 return "E";
-            case Log.ASSERT:
+            case LogLevel.ASSERT:
                 return "A";
             default:
                 return "";

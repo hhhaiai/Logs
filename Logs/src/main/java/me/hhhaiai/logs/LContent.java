@@ -1,6 +1,6 @@
 package me.hhhaiai.logs;
 
-import android.util.Log;
+import me.hhhaiai.logs.utils.LogLevel;
 
 import java.util.Locale;
 
@@ -30,17 +30,17 @@ public class LContent {
 
 
     static String getLogLevelName(int level) {
-        if (Log.VERBOSE == level) {
+        if (LogLevel.VERBOSE == level) {
             return "VERBOSE";
-        } else if (Log.DEBUG == level) {
+        } else if (LogLevel.DEBUG == level) {
             return "DEBUG";
-        } else if (Log.INFO == level) {
+        } else if (LogLevel.INFO == level) {
             return "INFO";
-        } else if (Log.WARN == level) {
+        } else if (LogLevel.WARN == level) {
             return "WARN";
-        } else if (Log.ERROR == level) {
+        } else if (LogLevel.ERROR == level) {
             return "ERROR";
-        } else if (Log.ASSERT == level) {
+        } else if (LogLevel.ASSERT == level) {
             return "ASSERT";
         } else {
             return "VERBOSE";

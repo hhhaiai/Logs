@@ -1,9 +1,9 @@
 package me.hhhaiai.logs.parsers;
 
-import android.util.Log;
-import android.util.Pair;
+import me.hhhaiai.logs.utils.Pair;
 
 import me.hhhaiai.logs.proces.LinesPorcesser;
+import me.hhhaiai.logs.utils.Utils;
 
 public class ThrowableParser implements IParser {
     @Override
@@ -13,7 +13,7 @@ public class ThrowableParser implements IParser {
         }
         Throwable th = (Throwable) args;
 
-        String source = Log.getStackTraceString(th);
+        String source = Utils.getStackTraceString(th);
         String tartget = null;
         if (isFormat) {
             tartget = Supervision.format(source);

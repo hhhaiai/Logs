@@ -1,8 +1,8 @@
 package me.hhhaiai.logs.parsers;
 
 
-import android.util.Pair;
-import android.util.TextUtils;
+import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,7 +12,6 @@ import me.hhhaiai.logs.utils.Ref;
 
 
 public class ClassParser implements IParser {
-
 
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
@@ -59,7 +58,7 @@ public class ClassParser implements IParser {
         StringBuilder res = new StringBuilder();
         for (Method method : methods) {
             String line = MethodParser.parserMethod(method);
-            if (!TextUtils.isEmpty(line)) {
+            if (!Utils.isEmpty(line)) {
                 res.append(line).append("\r\n");
             }
         }
@@ -77,7 +76,7 @@ public class ClassParser implements IParser {
         StringBuilder res = new StringBuilder();
         for (Field f : fields) {
             String line = Ref.getField(null, f);
-            if (!TextUtils.isEmpty(line)) {
+            if (!Utils.isEmpty(line)) {
                 res.append(line).append("\r\n");
             }
         }

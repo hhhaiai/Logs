@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package android.util;
+package me.hhhaiai.logs.utils;
 
 import java.util.Objects;
 
@@ -30,7 +30,7 @@ public class Pair<F, S> {
     /**
      * Constructor for a Pair.
      *
-     * @param first the first object in the Pair
+     * @param first  the first object in the Pair
      * @param second the second object in the pair
      */
     public Pair(F first, S second) {
@@ -44,7 +44,7 @@ public class Pair<F, S> {
      *
      * @param o the {@link Pair} to which this one is to be checked for equality
      * @return true if the underlying objects of the Pair are both considered
-     *         equal
+     * equal
      */
     @Override
     public boolean equals(Object o) {
@@ -72,6 +72,7 @@ public class Pair<F, S> {
 
     /**
      * Convenience method for creating an appropriately typed pair.
+     *
      * @param a the first object in the Pair
      * @param b the second object in the pair
      * @return a Pair that is templatized with the types of a and b

@@ -1,6 +1,6 @@
 package me.hhhaiai.logs;
 
-import android.util.Log;
+import me.hhhaiai.logs.utils.LogLevel;
 
 public class Logs {
     private Logs() {
@@ -28,30 +28,30 @@ public class Logs {
     }
 
     public static void v(Object... args) {
-        base(Log.VERBOSE, args);
+        base(LogLevel.VERBOSE, args);
     }
 
 
     public static void d(Object... args) {
-        base(Log.DEBUG, args);
+        base(LogLevel.DEBUG, args);
     }
 
     public static void i(Object... args) {
-        base(Log.INFO, args);
+        base(LogLevel.INFO, args);
     }
 
     public static void w(Object... args) {
-        base(Log.WARN, args);
+        base(LogLevel.WARN, args);
     }
 
 
     public static void e(Object... args) {
-        base(Log.ERROR, args);
+        base(LogLevel.ERROR, args);
     }
 
 
     public static void wtf(Object... args) {
-        base(Log.ASSERT, args);
+        base(LogLevel.ASSERT, args);
     }
 
     private static void base(int level, Object... args) {
