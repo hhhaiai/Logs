@@ -25,9 +25,9 @@ jar {
 //        //configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 //        configurations.runtime.collect { zipTree(it) }
 //    }
-    manifest {
-        attributes 'Main-Class': ''
-    }
+//    manifest {
+//        attributes 'Main-Class': ''
+//    }
 }
 
 group 'me.hhhaiai'

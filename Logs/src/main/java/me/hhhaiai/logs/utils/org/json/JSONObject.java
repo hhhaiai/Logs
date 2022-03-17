@@ -14,15 +14,9 @@
  * limitations under the License.
  */
 
-package org.json;
+package me.hhhaiai.logs.utils.org.json;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 // Note: this class was written without inspecting the non-free org.json sourcecode.

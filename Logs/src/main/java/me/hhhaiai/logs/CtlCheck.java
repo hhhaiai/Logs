@@ -4,8 +4,6 @@ package me.hhhaiai.logs;
 import me.hhhaiai.logs.utils.Pair;
 import me.hhhaiai.logs.utils.Utils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -19,6 +17,8 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import me.hhhaiai.logs.utils.Closer;
+import me.hhhaiai.logs.utils.org.json.JSONArray;
+import me.hhhaiai.logs.utils.org.json.JSONObject;
 
 
 public class CtlCheck {

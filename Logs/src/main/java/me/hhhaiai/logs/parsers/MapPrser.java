@@ -1,12 +1,10 @@
 package me.hhhaiai.logs.parsers;
 
+import me.hhhaiai.logs.proces.LinesPorcesser;
 import me.hhhaiai.logs.utils.Pair;
-
-import org.json.JSONObject;
+import me.hhhaiai.logs.utils.org.json.JSONObject;
 
 import java.util.Map;
-
-import me.hhhaiai.logs.proces.LinesPorcesser;
 
 public class MapPrser implements IParser {
     @Override

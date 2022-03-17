@@ -2,11 +2,11 @@ package me.hhhaiai.logs.parsers;
 
 import me.hhhaiai.logs.utils.Pair;
 
-import org.json.JSONArray;
 
 import java.util.Iterator;
 
 import me.hhhaiai.logs.proces.LinesPorcesser;
+import me.hhhaiai.logs.utils.org.json.JSONArray;
 
 
 /**

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.json;
+package me.hhhaiai.logs.utils.org.json;
 
 class JSON {
     /**

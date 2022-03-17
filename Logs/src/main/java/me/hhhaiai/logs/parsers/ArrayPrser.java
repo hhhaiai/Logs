@@ -3,8 +3,7 @@ package me.hhhaiai.logs.parsers;
 
 import me.hhhaiai.logs.proces.LinesPorcesser;
 import me.hhhaiai.logs.utils.Pair;
-import org.json.JSONArray;
-import org.json.JSONException;
+import me.hhhaiai.logs.utils.org.json.JSONArray;
 
 public class ArrayPrser implements IParser {
     @Override
@@ -73,7 +72,7 @@ public class ArrayPrser implements IParser {
                 for (int i = 0; i < floats.length; i++) {
                     try {
                         arr.put(floats[i]);
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -84,7 +83,7 @@ public class ArrayPrser implements IParser {
                 for (int i = 0; i < doubles.length; i++) {
                     try {
                         arr.put(doubles[i]);
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

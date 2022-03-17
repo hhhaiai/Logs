@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.json;
+package me.hhhaiai.logs.utils.org.json;
 
 // Note: this class was written without inspecting the non-free org.json sourcecode.
 
