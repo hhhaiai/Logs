@@ -25,7 +25,7 @@ class LogPrint {
 
 
         for (String line : list) {
-            Logger.println(level, LContent.DefTAG, line);
+            LoggerNative.println(level, LContent.DefTAG, line);
         }
     }
 

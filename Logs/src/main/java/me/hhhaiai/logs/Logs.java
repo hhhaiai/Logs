@@ -2,8 +2,6 @@ package me.hhhaiai.logs;
 
 import android.util.Log;
 
-import sun.misc.Unsafe;
-
 public class Logs {
     private Logs() {
     }
@@ -27,7 +25,6 @@ public class Logs {
         LContent.isDefPrintCallStackInfo = needCallStackInfo;
         LContent.isDefFormatInfo = format;
         LContent.DefTAG = tag;
-        Unsafe u;
     }
 
     public static void v(Object... args) {

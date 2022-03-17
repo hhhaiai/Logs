@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 import me.hhhaiai.logs.utils.Ref;
 
-public class Logger {
+public class LoggerNative {
     public static void println(int priority, String tag, String msg) {
         if (TextUtils.isEmpty(msg)) {
             return;

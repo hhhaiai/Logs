@@ -32,7 +32,7 @@ public class CtlCheck {
         if (LContent.isDefShellControl) {
             LContent.getLogLevelName(priorty);
 
-            Logger.println(priorty, LContent.DefTAG, LContent.getShellErrorInfo(priorty));
+            LoggerNative.println(priorty, LContent.DefTAG, LContent.getShellErrorInfo(priorty));
             return true;
         }
         return false;
