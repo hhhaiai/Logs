@@ -8,6 +8,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 
 class LoggerNative {
+
     public static void println(int priority, String tag, String msg) {
         if (Utils.isEmpty(msg)) {
             return;
