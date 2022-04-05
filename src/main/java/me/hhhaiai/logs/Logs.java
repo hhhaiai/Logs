@@ -17,8 +17,7 @@ public class Logs {
      * @param format            格式化json/xml等情况下，是否需要格式化.默认fasle
      * @param tag               android logcat的LogContent.TAG. 默认的LogContent.TAG为"sanbo"
      */
-    public static void build(boolean showLog, boolean shellControl, boolean needWarpper, boolean needCallStackInfo,
-                             boolean format, String tag) {
+    public static void build(boolean showLog, boolean shellControl, boolean needWarpper, boolean needCallStackInfo, boolean format, String tag) {
         LContent.isDefLoged = showLog;
         LContent.isDefShellControl = shellControl;
         LContent.isDefWarpperInfo = needWarpper;

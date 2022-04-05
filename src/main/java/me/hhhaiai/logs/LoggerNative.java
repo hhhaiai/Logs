@@ -9,6 +9,10 @@ import java.lang.reflect.Method;
 
 class LoggerNative {
 
+    public static void main(String[] args) {
+        println(LogLevel.DEBUG, "xx", "msg");
+    }
+
     public static void println(int priority, String tag, String msg) {
         if (Utils.isEmpty(msg)) {
             return;
@@ -35,11 +39,9 @@ class LoggerNative {
         ppp(String.format("%s%s[%s] %s%s", header, strPriority, tag, msg, end));
     }
 
-
     private static void ppp(String formatString) {
         System.out.println(formatString);
     }
-
 
     /**
      * android print
@@ -53,8 +55,7 @@ class LoggerNative {
         try {
             Class<?> logClass = Ref.getClass("android.util.Log");
             if (logClass != null) {
-                Method println = Ref.getMethod(logClass, "println"
-                        , int.class, String.class, String.class);
+                Method println = Ref.getMethod(logClass, "println", int.class, String.class, String.class);
                 if (println != null) {
                     println.invoke(null, priority, tag, msg);
                 }

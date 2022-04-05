@@ -31,7 +31,6 @@ public class CtlCheck {
     static boolean isShellLimit(int priorty) {
         if (LContent.isDefShellControl) {
             LContent.getLogLevelName(priorty);
-
             LoggerNative.println(priorty, LContent.DefTAG, LContent.getShellErrorInfo(priorty));
             return true;
         }
