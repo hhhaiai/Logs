@@ -32,5 +32,4 @@ __MACOSX
 .DS_Store
 
 
-src/main/java/ff/jnezha/jnt/JntFormatVersion.java
-src/main/java/ff/jnezha/jnt/example/
+*/LogsFormatVersion.java
