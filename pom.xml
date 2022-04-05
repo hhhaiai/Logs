@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.hhhaiai.logs</groupId>
@@ -11,7 +11,6 @@
     <packaging>jar</packaging>
     <name>Logs</name>
     <description>Logs is a log lib written in Java</description>
-
     <url>https://github.com/hhhaiai/Logs</url>
     <inceptionYear>2022</inceptionYear>
 
@@ -25,17 +24,14 @@
         <version.file>${project.basedir}/src/main/java/me/hhhaiai/logs/LogsFormatVersion.java</version.file>
         <main.classname>me.hhhaiai.logs.Logs</main.classname>
     </properties>
-
     <scm>
         <url>https://github.com/hhhaiai/Logs</url>
         <connection>scm:git:https://github.com/hhhaiai/Logs.git</connection>
     </scm>
-
     <organization>
         <name>sanbo Group</name>
         <url>https://github.com/hhhaiai</url>
     </organization>
-
     <developers>
         <developer>
             <id>hhhaiai</id>
@@ -79,7 +75,6 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-
     <build>
         <plugins>
             <plugin>
@@ -135,7 +130,6 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -147,7 +141,6 @@
                     <goals>deploy</goals>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -165,7 +158,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -182,7 +174,6 @@
                     <attach>true</attach>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
