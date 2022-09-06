@@ -1,12 +1,11 @@
 package me.hhhaiai.logs.parsers;
 
+import me.hhhaiai.logs.proces.LinesPorcesser;
 import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Ref;
 import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
-
-import me.hhhaiai.logs.proces.LinesPorcesser;
-import me.hhhaiai.logs.utils.Ref;
 
 /**
  * @Copyright © 2021 sanbo Inc. All rights reserved.
@@ -21,8 +20,14 @@ public class ObjectParer implements IParser {
         if (args == null) {
             return null;
         }
-        String source = getObjectInfo(args);
+        StringBuffer sb = new StringBuffer();
+        sb.append("// ").append(args.getClass()).append("@").append(Integer.toHexString(args.hashCode())).append("\r\n")
+                .append("Object ").append(args.getClass().getName()).append("{").append("\r\n")
+                .append(getObjectInfo(args)).append("\r\n")
+                .append("}");
+        String source = sb.toString();
         String tartget = null;
+
         if (isFormat) {
             tartget = Supervision.format(source);
         }
@@ -53,7 +58,8 @@ public class ObjectParer implements IParser {
         for (Field f : fields) {
             String line = Ref.getField(obj, f);
             if (!Utils.isEmpty(line)) {
-                res.append(line).append("\r\n");
+                // 增加空格
+                res.append("\t").append(line).append("\r\n");
             }
         }
         return res.toString();

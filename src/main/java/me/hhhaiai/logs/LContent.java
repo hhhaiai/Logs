@@ -22,12 +22,9 @@ public class LContent {
     public static String DefTAG = LContent.PRE_TAG;
     // 默认tag
     static final String PRE_TAG = "sanbo";
-    // support multilog
-//    static List<Logsx> LOGS = new ArrayList<Logsx>();
 
     static final int JSON_INDENT = 2;
     static String WRNNING_SHELL_CTL = "Wranning....不够打印级别,请在命令行设置指令后重新尝试打印,命令行指令: adb shell setprop log.tag.%s %s";
-
 
     static String getLogLevelName(int level) {
         if (LogLevel.VERBOSE == level) {

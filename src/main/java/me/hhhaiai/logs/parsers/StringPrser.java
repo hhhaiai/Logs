@@ -1,15 +1,14 @@
 package me.hhhaiai.logs.parsers;
 
-import me.hhhaiai.logs.utils.Pair;
-
 import me.hhhaiai.logs.proces.LinesPorcesser;
+import me.hhhaiai.logs.utils.Pair;
 
 
 public class StringPrser implements IParser {
     @Override
     public Pair<String, String> parserObject(Object args, boolean isFormat, boolean isWrapper) {
         if (args == null) {
-            return null;
+            args = "null";
         }
         String source = args.toString();
         String tartget = null;

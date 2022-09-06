@@ -1,13 +1,12 @@
 package me.hhhaiai.logs.parsers;
 
+import me.hhhaiai.logs.CtlCheck;
 import me.hhhaiai.logs.utils.Pair;
 import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
-
-import me.hhhaiai.logs.CtlCheck;
 
 
 class Supervision {

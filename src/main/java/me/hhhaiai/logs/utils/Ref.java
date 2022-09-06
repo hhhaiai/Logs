@@ -32,7 +32,6 @@ public class Ref {
                 }
             }
             line.append(field.toGenericString());
-
             int modify = field.getModifiers();
             setFinalFieldReadable(field, modify);
             // 解析静态变量.也可以理解成获取默认值
@@ -42,15 +41,21 @@ public class Ref {
                     if (resFieldValue != null) {
                         line.append(" = ").append(Helper.wrpper(resFieldValue));
                     }
+
                 } catch (Throwable e) {
                 }
-            }
-            if (obj != null) {
-                Object value = field.get(obj);
-                if (value != null) {
-                    line.append(" = ").append(Helper.wrpper(value));
+            } else {
+                // 对象
+                if (obj != null) {
+                    Object value = field.get(obj);
+                    if (value != null) {
+                        line.append(" = ").append(Helper.wrpper(value));
+                    }
+                } else {
+                    //已经增加了响应的变量
                 }
             }
+
             if (!line.toString().endsWith(";")) {
                 line.append(";");
             }
@@ -61,51 +66,80 @@ public class Ref {
     }
 
     // support android and java
-    private static void setFinalFieldReadable(Field field, int modify) throws NoSuchFieldException, IllegalAccessException {
-        if (Modifier.isFinal(modify)) {
-            Field modifiersField = getField("modifiers");
-            if (modifiersField == null) {
-                modifiersField = getField("accessFlags");
-            }
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(field, modify & ~Modifier.FINAL);
-        }
-    }
-
-    private static Field getField(String accessFlags) {
+    private static void setFinalFieldReadable(Field field, int modify) {
         try {
-            return Field.class.getDeclaredField(accessFlags);
+            if (Modifier.isFinal(modify)) {
+                Field modifiersField = getField(Field.class, "modifiers");
+                if (modifiersField == null) {
+                    modifiersField = getField(Field.class, "accessFlags");
+                }
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, modify & ~Modifier.FINAL);
+            }
         } catch (Throwable e) {
         }
-        return null;
     }
 
-    public static Class<?> getClass(String className) throws ClassNotFoundException {
+    public static Field getField(Class clazz, String fieldName) {
+        if (clazz == null || Utils.isEmpty(fieldName)) {
+            return null;
+        }
+        Field field = null;
+        while (clazz != Object.class) {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                if (field != null) {
+                    if (!field.isAccessible()) {
+                        field.setAccessible(true);
+                    }
+                    return field;
+                }
+            } catch (Exception e) {
+            }
+            clazz = clazz.getSuperclass();
+        }
+        return field;
+    }
+
+    public static Class<?> getClass(String className) {
+        if (Utils.isEmpty(className)) {
+            return null;
+        }
         Class c = null;
         try {
             c = Class.forName(className);
         } catch (Throwable e) {
         }
         if (c == null) {
-            c = Ref.class.getClassLoader().loadClass(className);
+
+            try {
+                c = ClassLoader.getSystemClassLoader().loadClass(className);
+            } catch (Throwable e) {
+            }
         }
         return c;
     }
 
-    public static Method getMethod(Class<?> cls, String methodName, Class<?>... parameterTypes) {
-        Method m = null;
-        try {
-            m = cls.getDeclaredMethod(methodName, parameterTypes);
-        } catch (NoSuchMethodException e) {
+    // 基础方法，不能使用其他内部反射
+    public static Method getMethod(Class<?> clazz, String methodName, Class<?>... types) {
+        if (clazz == null || Utils.isEmpty(methodName)) {
+            return null;
         }
-        if (m != null) {
-            return m;
+        Method method = null;
+        while (clazz != Object.class) {
+            try {
+                method = clazz.getDeclaredMethod(methodName, types);
+                if (method != null) {
+                    if (!method.isAccessible()) {
+                        method.setAccessible(true);
+                    }
+                    return method;
+                }
+            } catch (Throwable igone) {
+            }
+            clazz = clazz.getSuperclass();
         }
-        try {
-            m = cls.getMethod(methodName, parameterTypes);
-        } catch (NoSuchMethodException e) {
-        }
-        return m;
+        return method;
     }
 
 }

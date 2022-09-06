@@ -117,8 +117,11 @@ public class LinesPorcesser {
      * @TODO 按个体切割
      */
     public static List<String> split(String info) {
-        if (Utils.isEmpty(info)) {
-            return null;
+        if (info==null){
+            return new ArrayList<String>(){{add(null);}};
+        }
+        if (info==""){
+            return new ArrayList<String>(){{add("");}};
         }
         List<String> result = new ArrayList<String>();
         if (info.length() > LOG_MAXLENGTH) {

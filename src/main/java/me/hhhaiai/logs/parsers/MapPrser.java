@@ -23,11 +23,13 @@ public class MapPrser implements IParser {
                     obj.put(String.valueOf(key), value);
                 } else if (key instanceof String) {
                     obj.put((String) key, value);
+                } else if (key == null) {
+                    obj.put("null", value);
                 } else {
                     if (key != null) {
                         obj.put(key.toString(), value);
                     } else {
-                        obj.put("", value);
+                        obj.put("_null_", value);
                     }
 
                 }

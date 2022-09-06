@@ -1,8 +1,8 @@
 package me.hhhaiai.logs;
 
-import java.util.List;
-
 import me.hhhaiai.logs.parsers.LogFactory;
+
+import java.util.List;
 
 class LogPrint {
     public static void print(int level, Object... args) {
@@ -13,16 +13,6 @@ class LogPrint {
         if (!CtlCheck.isValid(list)) {
             return;
         }
-        // support java and android
-//        boolean isAndroid = isAndroidByLog();
-//        for (String info : list) {
-//            if (isAndroid) {
-//                Log.println(level, LContent.DefTAG, info);
-//            } else {
-//                System.out.println(info);
-//            }
-//        }
-
 
         for (String line : list) {
             LoggerNative.println(level, LContent.DefTAG, line);

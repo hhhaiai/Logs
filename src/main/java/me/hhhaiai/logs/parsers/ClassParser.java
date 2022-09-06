@@ -1,14 +1,13 @@
 package me.hhhaiai.logs.parsers;
 
 
+import me.hhhaiai.logs.proces.LinesPorcesser;
 import me.hhhaiai.logs.utils.Pair;
+import me.hhhaiai.logs.utils.Ref;
 import me.hhhaiai.logs.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import me.hhhaiai.logs.proces.LinesPorcesser;
-import me.hhhaiai.logs.utils.Ref;
 
 
 public class ClassParser implements IParser {
@@ -32,13 +31,25 @@ public class ClassParser implements IParser {
                     .append(Supervision.format(methodInfo));
             // 暂时格式化部分不增加其他的，后续可增加类关系等
 //            if (isFormat) {
-
 //            }
+            // 生成 class xxx{
+            // //...
+            // }
+            target.append("// ").append(clz.getName()).append("\r\n")
+                    .append("class ").append(clz.getName()).append("{").append("\r\n")
+                    .append(source.toString()).append("\r\n")
+                    .append("}")
+            ;
             if (isWrapper) {
-                target.append(LinesPorcesser.wrapper(source.toString()));
-                return new Pair<String, String>(source.toString(), target.toString());
+                target.append("// ").append(clz.getName()).append("\r\n")
+                .append("class ").append(clz.getName()).append("{").append("\r\n")
+                .append(source.toString()).append("\r\n")
+                .append("}")
+                ;
+                return new Pair<String, String>(source.toString(), LinesPorcesser.wrapper(target.toString()));
             } else {
-                return new Pair<String, String>(source.toString(), source.toString());
+
+                return new Pair<String, String>(source.toString(), target.toString());
             }
 
         } catch (Throwable e) {
@@ -59,7 +70,7 @@ public class ClassParser implements IParser {
         for (Method method : methods) {
             String line = MethodParser.parserMethod(method);
             if (!Utils.isEmpty(line)) {
-                res.append(line).append("\r\n");
+                res.append("\t").append(line).append("\r\n");
             }
         }
         return res.toString();
@@ -77,7 +88,7 @@ public class ClassParser implements IParser {
         for (Field f : fields) {
             String line = Ref.getField(null, f);
             if (!Utils.isEmpty(line)) {
-                res.append(line).append("\r\n");
+                res.append("\t").append(line).append("\r\n");
             }
         }
         return res.toString();

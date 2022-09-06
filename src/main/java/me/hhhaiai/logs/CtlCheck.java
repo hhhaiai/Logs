@@ -1,13 +1,11 @@
 package me.hhhaiai.logs;
 
 
+import me.hhhaiai.logs.utils.Closer;
 import me.hhhaiai.logs.utils.Pair;
 import me.hhhaiai.logs.utils.Utils;
-
-
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.List;
+import me.hhhaiai.logs.utils.org.json.JSONArray;
+import me.hhhaiai.logs.utils.org.json.JSONObject;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
@@ -15,10 +13,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
-import me.hhhaiai.logs.utils.Closer;
-import me.hhhaiai.logs.utils.org.json.JSONArray;
-import me.hhhaiai.logs.utils.org.json.JSONObject;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.List;
 
 
 public class CtlCheck {
@@ -29,10 +26,14 @@ public class CtlCheck {
      * @return
      */
     static boolean isShellLimit(int priorty) {
-        if (LContent.isDefShellControl) {
-            LContent.getLogLevelName(priorty);
-            LoggerNative.println(priorty, LContent.DefTAG, LContent.getShellErrorInfo(priorty));
-            return true;
+
+        if (!LoggerNative.isAndroidPlatform()) {
+            return false;
+        } else {
+            // android 平台才接受shell控制
+            if (LContent.isDefShellControl) {
+                return LoggerNative.isLoggable(LContent.DefTAG, priorty);
+            }
         }
         return false;
     }
