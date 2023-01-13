@@ -27,6 +27,17 @@ public class Ax {
         Logs.e("字符串打印:" + a());
         Logs.wtf("字符串打印:" + a());
 
+        for (int i = 0; i < 10; i++) {
+            new Thread(()->{
+                Logs.v("字符串打印:" + a());
+                Logs.d("字符串打印:" + a());
+                Logs.i("字符串打印:" + a());
+                Logs.w("字符串打印:" + a());
+                Logs.e("字符串打印:" + a());
+                Logs.wtf("字符串打印:" + a());
+            }).start();
+        }
+
     }
 
     private static void testNull() {

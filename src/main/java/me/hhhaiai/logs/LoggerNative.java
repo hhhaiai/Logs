@@ -44,14 +44,14 @@ class LoggerNative {
         switch (priorty) {
             case LogLevel.VERBOSE:
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 97, 1, "V/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 97, 1, "[" + getThreadName() + "] V/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 97, 2, msg);
                 }
 //                return "V";
             case LogLevel.DEBUG:
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 36, 1, "D/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 36, 1, "[" + getThreadName() + "] D/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 36, 2, msg);
                 }
@@ -59,21 +59,21 @@ class LoggerNative {
             case LogLevel.INFO:
 
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 32, 1, "I/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 32, 1, "[" + getThreadName() + "] I/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 32, 2, msg);
                 }
 //                return "I";
             case LogLevel.WARN:
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 33, 1, "W/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 33, 1, "[" + getThreadName() + "] W/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 33, 2, msg);
                 }
 //                return "W";
             case LogLevel.ERROR:
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 91, 1, "E/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 91, 1, "[" + getThreadName() + "] E/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 91, 2, msg);
                 }
@@ -81,7 +81,7 @@ class LoggerNative {
 //                return "E";
             case LogLevel.ASSERT:
                 if (type == LogLevel.TYPE_TAG) {
-                    return String.format(Locale.getDefault(), PLANA, 31, 1, "A/" + msg + ": ");
+                    return String.format(Locale.getDefault(), PLANA, 31, 1, "[" + getThreadName() + "] A/" + msg + ": ");
                 } else {
                     return String.format(Locale.getDefault(), PLANA, 31, 2, msg);
                 }
@@ -89,6 +89,11 @@ class LoggerNative {
             default:
                 return "";
         }
+    }
+
+
+    private static String getThreadName() {
+        return Thread.currentThread().getName();
     }
 
     private static void ppp(String formatString) {
