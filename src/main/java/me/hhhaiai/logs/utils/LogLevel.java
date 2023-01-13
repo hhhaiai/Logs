@@ -31,4 +31,7 @@ public class LogLevel {
      * Priority constant for the println method.
      */
     public static final int ASSERT = 7;
+
+    public static final int TYPE_TAG = 0x01;
+    public static final int TYPE_MSG = 0x02;
 }

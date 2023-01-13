@@ -12,10 +12,20 @@ public class Ax {
 //        Logs.i("字符串打印:" + a());
 //        Logs.i(new Model("名字",99));
 //        Logs.i(Model.class);
-
+//
 //        testMap();
 //        testList();
-        testNull();
+//        testNull();
+        System.out.println("原本颜色字符串打印:" + a());
+        System.out.println("原本颜色字符串打印:" + a());
+        System.out.println("原本颜色字符串打印:" + a());
+        System.out.println("原本颜色字符串打印:" + a());
+        Logs.v("字符串打印:" + a());
+        Logs.d("字符串打印:" + a());
+        Logs.i("字符串打印:" + a());
+        Logs.w("字符串打印:" + a());
+        Logs.e("字符串打印:" + a());
+        Logs.wtf("字符串打印:" + a());
 
     }
 

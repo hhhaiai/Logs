@@ -5,6 +5,7 @@ import me.hhhaiai.logs.utils.Ref;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.Locale;
 
 class LoggerNative {
 
@@ -31,12 +32,63 @@ class LoggerNative {
      * @param msg
      */
     private static void printForJava(int priorty, String tag, String msg) {
-        // @TODO can update other color
-        String header = "", end = "";
-//        String strPriority = converyPriorityToString(priorty);
-        //I[sanbo]
-//        ppp(String.format("%s%s[%s] %s%s", header, strPriority, tag, msg, end));
-        ppp(String.format("%s%s%s", header, msg, end));
+        String tagProcessed = converyPriorityToString(priorty, LogLevel.TYPE_TAG, tag);
+        String msgProcessed = converyPriorityToString(priorty, LogLevel.TYPE_MSG, msg);
+        ppp(String.format("%s%s", tagProcessed, msgProcessed));
+    }
+
+    private static final String PLANA = "\u001b[%d;%dm%s\u001b[0m";
+    private static final String PLANB = "\033[%d;%dm%s\u001b[0m";
+
+    private static String converyPriorityToString(int priorty, int type, String msg) {
+        switch (priorty) {
+            case LogLevel.VERBOSE:
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 97, 1, "V/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 97, 2, msg);
+                }
+//                return "V";
+            case LogLevel.DEBUG:
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 36, 1, "D/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 36, 2, msg);
+                }
+//                return "D";
+            case LogLevel.INFO:
+
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 32, 1, "I/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 32, 2, msg);
+                }
+//                return "I";
+            case LogLevel.WARN:
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 33, 1, "W/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 33, 2, msg);
+                }
+//                return "W";
+            case LogLevel.ERROR:
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 91, 1, "E/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 91, 2, msg);
+                }
+
+//                return "E";
+            case LogLevel.ASSERT:
+                if (type == LogLevel.TYPE_TAG) {
+                    return String.format(Locale.getDefault(), PLANA, 31, 1, "A/" + msg + ": ");
+                } else {
+                    return String.format(Locale.getDefault(), PLANA, 31, 2, msg);
+                }
+//                return "A";
+            default:
+                return "";
+        }
     }
 
     private static void ppp(String formatString) {
@@ -105,22 +157,4 @@ class LoggerNative {
         return file.isFile();
     }
 
-    private static String converyPriorityToString(int priorty) {
-        switch (priorty) {
-            case LogLevel.VERBOSE:
-                return "V";
-            case LogLevel.DEBUG:
-                return "D";
-            case LogLevel.INFO:
-                return "I";
-            case LogLevel.WARN:
-                return "W";
-            case LogLevel.ERROR:
-                return "E";
-            case LogLevel.ASSERT:
-                return "A";
-            default:
-                return "";
-        }
-    }
 }
