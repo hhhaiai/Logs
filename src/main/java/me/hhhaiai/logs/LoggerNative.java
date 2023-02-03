@@ -38,7 +38,8 @@ class LoggerNative {
     }
 
     private static final String PLANA = "\u001b[%d;%dm%s\u001b[0m";
-    private static final String PLANB = "\033[%d;%dm%s\u001b[0m";
+    private static final String PLANB = "\033[%d;%dm%s\033[0m";
+    private static final String PLANC = "\\e[%d;%dm%s\\e[0m";
 
     private static String converyPriorityToString(int priorty, int type, String msg) {
         switch (priorty) {
