@@ -1,5 +1,6 @@
 # Logs
 
+
 Java and Android Log
 
 ## Logs功能
